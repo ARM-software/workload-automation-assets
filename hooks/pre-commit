@@ -1,0 +1,51 @@
+#!/usr/bin/env python
+import os
+import sys
+import subprocess
+import fnmatch
+
+# This script assumes its running inside ".git/hooks/"
+base_path = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..'))
+script_path = os.path.abspath(os.path.join(base_path, "index-assets"))
+output_path = os.path.abspath(os.path.join(base_path, "dependencies", "index.json"))
+
+
+def run_command(*args, **kwargs):
+    kwargs.setdefault('stdout', subprocess.PIPE)
+    kwargs.setdefault('stderr', subprocess.PIPE)
+    proc = subprocess.Popen(args, **kwargs)
+    out, err = proc.communicate()
+    if err:
+        print err
+        sys.exit(1)
+    return out
+
+
+def get_changed_files():
+    """
+    Get python files from 'files to commit' git cache list.
+    """
+    files = []
+    filelist = run_command('git', 'diff', '--cached', '--name-status').strip()
+    for line in filelist.split('\n'):
+        action, filename = line.strip().split()
+        if action != 'D':
+            files.append(filename)
+    return files
+
+
+# Figure out which assets need updating
+changed_files = get_changed_files()
+changed_asset_files = [path for path in changed_files if fnmatch.fnmatch(path, 'dependencies/*/*')]
+changed_assets = set([path.split(os.sep)[1] for path in changed_asset_files])
+
+# Update assets
+run_command(script_path,
+            os.path.join(base_path, "dependencies"),
+            "-o", output_path,
+            "-i", output_path,
+            "-n", *changed_assets)
+
+# Add new index to commit
+if changed_assets:
+    run_command("git", "add", output_path)

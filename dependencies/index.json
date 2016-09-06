@@ -1,0 +1,80 @@
+{
+    "msword": [
+        {
+            "path": "uxperf_test_doc.docx",
+            "sha256": "9aa46eab8f740de727284e0db95ff8145b269bbb6bc953b29d68a58aebc679db"
+        },
+        {
+            "path": "uxperf_1600x1200.jpg",
+            "sha256": "7374d90da11d60dc4c64ea6ef3b60b1f75e6f50d0d1cc054b358e174bdd512c9"
+        }
+    ],
+    "excel": [
+        {
+            "path": "uxperf_test_doc.xlsx",
+            "sha256": "096e276435a84c6bcf19a4454fb1b6b3991b29a636a3f940854740302a9b9597"
+        }
+    ],
+    "googleslides": [
+        {
+            "path": "uxperf_1600x1200.jpg",
+            "sha256": "7374d90da11d60dc4c64ea6ef3b60b1f75e6f50d0d1cc054b358e174bdd512c9"
+        },
+        {
+            "path": "uxperf_test_doc.pptx",
+            "sha256": "181856772cc79f225213f7543a8d6bcef426042cea356036d2e3540b4a3ee7e8"
+        }
+    ],
+    "googlephotos": [
+        {
+            "path": "uxperf_1600x1200.jpg",
+            "sha256": "7374d90da11d60dc4c64ea6ef3b60b1f75e6f50d0d1cc054b358e174bdd512c9"
+        },
+        {
+            "path": "uxperf_3264x2448.jpg",
+            "sha256": "fb6e9ab18b93673c132fa23bec1b944735b74fd6326ed78e6641f018c6704b30"
+        },
+        {
+            "path": "uxperf_1200x1600.png",
+            "sha256": "5100461ee387960eaf1eac2ec6619ed18fe8278d2e4edee7aa4e5e96f8ab6e09"
+        },
+        {
+            "path": "uxperf_2448x3264.png",
+            "sha256": "e4fd831708fdadd6612361313ef77f041f0743f330d21bdb8187e3e8323f589b"
+        }
+    ],
+    "reader": [
+        {
+            "path": "uxperf_test_doc.pdf",
+            "sha256": "dbec6390b5c55948a748eb5a4b1f709369e778498e6fa18b95b01aa3622f6476"
+        }
+    ],
+    "powerpoint": [
+        {
+            "path": "uxperf_1600x1200.jpg",
+            "sha256": "7374d90da11d60dc4c64ea6ef3b60b1f75e6f50d0d1cc054b358e174bdd512c9"
+        },
+        {
+            "path": "uxperf_test_doc.pptx",
+            "sha256": "181856772cc79f225213f7543a8d6bcef426042cea356036d2e3540b4a3ee7e8"
+        }
+    ],
+    "gmail": [
+        {
+            "path": "uxperf_1600x1200.jpg",
+            "sha256": "7374d90da11d60dc4c64ea6ef3b60b1f75e6f50d0d1cc054b358e174bdd512c9"
+        },
+        {
+            "path": "uxperf_3264x2448.jpg",
+            "sha256": "fb6e9ab18b93673c132fa23bec1b944735b74fd6326ed78e6641f018c6704b30"
+        },
+        {
+            "path": "uxperf_1200x1600.png",
+            "sha256": "5100461ee387960eaf1eac2ec6619ed18fe8278d2e4edee7aa4e5e96f8ab6e09"
+        },
+        {
+            "path": "uxperf_2448x3264.png",
+            "sha256": "e4fd831708fdadd6612361313ef77f041f0743f330d21bdb8187e3e8323f589b"
+        }
+    ]
+}
