@@ -9,7 +9,7 @@ the main repository (and download size) for users that do not need the functiona
 
 To use this assets repository you will need to add the following line to your config.py file::
 
-    remote_assets_url="https://raw.githubusercontent.com/ARM-software/workload-automation-assets/master/dependencies/index.json"
+    remote_assets_url="https://raw.githubusercontent.com/ARM-software/workload-automation-assets/master/dependencies"
 
 Contributing
 ============
