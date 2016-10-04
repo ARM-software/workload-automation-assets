@@ -63,18 +63,12 @@
         {
             "path": "uxperf_1600x1200.jpg",
             "sha256": "7374d90da11d60dc4c64ea6ef3b60b1f75e6f50d0d1cc054b358e174bdd512c9"
-        },
+        }
+    ],
+    "multiapp": [
         {
-            "path": "uxperf_3264x2448.jpg",
-            "sha256": "fb6e9ab18b93673c132fa23bec1b944735b74fd6326ed78e6641f018c6704b30"
-        },
-        {
-            "path": "uxperf_1200x1600.png",
-            "sha256": "5100461ee387960eaf1eac2ec6619ed18fe8278d2e4edee7aa4e5e96f8ab6e09"
-        },
-        {
-            "path": "uxperf_2448x3264.png",
-            "sha256": "e4fd831708fdadd6612361313ef77f041f0743f330d21bdb8187e3e8323f589b"
+            "path": "uxperf_1600x1200.jpg",
+            "sha256": "7374d90da11d60dc4c64ea6ef3b60b1f75e6f50d0d1cc054b358e174bdd512c9"
         }
     ]
 }
