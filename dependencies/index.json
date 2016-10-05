@@ -43,7 +43,7 @@
             "sha256": "e4fd831708fdadd6612361313ef77f041f0743f330d21bdb8187e3e8323f589b"
         }
     ],
-    "reader": [
+    "adobereader": [
         {
             "path": "uxperf_test_doc.pdf",
             "sha256": "db46234ad60beecbb5d87280af9bc38841bc9ad246a21eb617c7cdd5769ce216"
