@@ -65,7 +65,7 @@
             "sha256": "7374d90da11d60dc4c64ea6ef3b60b1f75e6f50d0d1cc054b358e174bdd512c9"
         }
     ],
-    "multiapp": [
+    "appshare": [
         {
             "path": "uxperf_1600x1200.jpg",
             "sha256": "7374d90da11d60dc4c64ea6ef3b60b1f75e6f50d0d1cc054b358e174bdd512c9"
