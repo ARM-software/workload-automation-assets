@@ -12,8 +12,20 @@ import argparse
 import hashlib
 import logging
 import json
+import fnmatch
 
 CHUNK = 2048
+
+IGNORE_PATTERNS = [
+    '*.DS_Store',
+]
+
+
+def should_ignore(filepath):
+    for pattern in IGNORE_PATTERNS:
+        if fnmatch.fnmatch(filepath, pattern):
+            return True
+    return False
 
 
 def index_assets(rootdir):
@@ -24,6 +36,10 @@ def index_assets(rootdir):
         for f in files:
             path = os.path.join(root, f)
             relpath = os.path.relpath(path, rootdir)
+
+            if should_ignore(relpath):
+                continue
+
             h = hashlib.sha256()
             with open(path, 'rb') as fh:
                 buf = fh.read(CHUNK)
