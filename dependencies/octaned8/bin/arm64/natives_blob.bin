@@ -4389,7 +4389,7 @@ ApplySingleChunkPatch:ApplySingleChunkPatch
 a.Debug.LiveEdit=bU;
 })
 
-X prologueR
+X prologueÝR
 (function(a,b,c){
 "use strict";
 %CheckIsBootstrapping();
@@ -4507,6 +4507,7 @@ for(;!(d===(void 0));d=d.next){
 d(f);
 }
 var w=[
+"AddBoundMethod",
 "ArrayToString",
 "AsyncFunctionNext",
 "AsyncFunctionThrow",
@@ -4514,6 +4515,8 @@ var w=[
 "GetIterator",
 "GetMethod",
 "GlobalPromise",
+"IntlParseDate",
+"IntlParseNumber",
 "IsPromise",
 "MapEntries",
 "MapIterator",
@@ -10980,508 +10983,512 @@ b.InstallFunctions(c,2,[
 ]);
 })
 
-i18n
+i18n
 (function(a,b){
 "use strict";
 %CheckIsBootstrapping();
 var c;
 var d;
-var e=a.Date;
-var f=a.Number;
-var g=a.RegExp;
-var h=a.String;
-var i=b.InstallFunctions;
-var j=b.InstallGetter;
-var k=b.InternalArray;
-var l;
-var m
-var n=b.ImportNow("ObjectHasOwnProperty");
-var o=b.OverrideFunction;
-var p=b.ImportNow("intl_pattern_symbol");
-var q=b.ImportNow("intl_resolved_symbol");
-var r=b.SetFunctionName;
-var s;
+var e;
+var f=a.Date;
+var g=a.Number;
+var h=a.RegExp;
+var i=a.String;
+var j=b.InstallFunctions;
+var k=b.InstallGetter;
+var l=b.InternalArray;
+var m;
+var n
+var o=b.ImportNow("ObjectHasOwnProperty");
+var p=b.OverrideFunction;
+var q=b.ImportNow("intl_pattern_symbol");
+var r=b.ImportNow("intl_resolved_symbol");
+var s=b.SetFunctionName;
 var t;
 var u;
 var v;
-b.Import(function(w){
-c=w.ArrayJoin;
-d=w.ArrayPush;
-l=w.InternalRegExpMatch;
-m=w.InternalRegExpReplace;
-s=w.StringIndexOf;
-t=w.StringLastIndexOf;
-u=w.StringSubstr;
-v=w.StringSubstring;
+var w;
+b.Import(function(x){
+c=x.ArrayJoin;
+d=x.ArrayPush;
+m=x.InternalRegExpMatch;
+n=x.InternalRegExpReplace;
+t=x.StringIndexOf;
+u=x.StringLastIndexOf;
+v=x.StringSubstr;
+w=x.StringSubstring;
 });
-function InstallFunction(x,y,z){
-i(x,2,[y,z]);
+b.ImportFromExperimental(function(x){
+e=x.FLAG_intl_extra;
+});
+function InstallFunction(y,z,A){
+j(y,2,[z,A]);
 }
-function InstallConstructor(x,y,z){
+function InstallConstructor(y,z,A){
 %CheckIsBootstrapping();
-r(z,y);
-%AddNamedProperty(x,y,z,2);
-%SetNativeFlag(z);
-%ToFastProperties(x);
+s(A,z);
+%AddNamedProperty(y,z,A,2);
+%SetNativeFlag(A);
+%ToFastProperties(y);
 }
-function AddBoundMethod(A,B,C,D,E){
+function AddBoundMethod(B,C,D,E,F){
 %CheckIsBootstrapping();
-var F=%CreatePrivateSymbol(B);
-var G=(0,(function(){
-if(!%IsInitializedIntlObjectOfType(this,E)){
-throw %make_type_error(53,B);
+var G=%CreatePrivateSymbol(C);
+var H=(0,(function(){
+if(!%IsInitializedIntlObjectOfType(this,F)){
+throw %make_type_error(53,C);
 }
-if((this[F]===(void 0))){
-var H;
-if((D===(void 0))||D===2){
-H=(0,((x,y)=>C(this,x,y)));
-}else if(D===1){
-H=(0,(x=>C(this,x)));
+if((this[G]===(void 0))){
+var I;
+if((E===(void 0))||E===2){
+I=(0,((x,y)=>D(this,x,y)));
+}else if(E===1){
+I=(0,(x=>D(this,x)));
 }else{
-H=(0,((...args)=>{
+I=(0,((...args)=>{
 if(args.length>0){
-return C(this,args[0]);
+return D(this,args[0]);
 }else{
-return C(this);
+return D(this);
 }
 }));
 }
+%SetNativeFlag(I);
+this[G]=I;
+}
+return this[G];
+}));
+%FunctionRemovePrototype(H);
+%DefineGetterPropertyUnchecked(B.prototype,C,H,2);
 %SetNativeFlag(H);
-this[F]=H;
 }
-return this[F];
-}));
-%FunctionRemovePrototype(G);
-%DefineGetterPropertyUnchecked(A.prototype,B,G,2);
-%SetNativeFlag(G);
-}
-var I={};
-%AddNamedProperty(a,"Intl",I,2);
-var J={
+var J={};
+%AddNamedProperty(a,"Intl",J,2);
+var K={
 'collator':(void 0),
 'numberformat':(void 0),
 'dateformat':(void 0),
 'breakiterator':(void 0)
 };
-var K=(void 0);
-function GetDefaultICULocaleJS(){
-if((K===(void 0))){
-K=%GetDefaultICULocale();
-}
-return K;
-}
 var L=(void 0);
-function GetUnicodeExtensionRE(){
-if(((void 0)===(void 0))){
-L=new g('-u(-[a-z0-9]{2,8})+','g');
+function GetDefaultICULocaleJS(){
+if((L===(void 0))){
+L=%GetDefaultICULocale();
 }
 return L;
 }
 var M=(void 0);
-function GetAnyExtensionRE(){
-if((M===(void 0))){
-M=new g('-[a-z0-9]{1}-.*','g');
+function GetUnicodeExtensionRE(){
+if(((void 0)===(void 0))){
+M=new h('-u(-[a-z0-9]{2,8})+','g');
 }
 return M;
 }
 var N=(void 0);
-function GetQuotedStringRE(){
+function GetAnyExtensionRE(){
 if((N===(void 0))){
-N=new g("'[^']+'",'g');
+N=new h('-[a-z0-9]{1}-.*','g');
 }
 return N;
 }
 var O=(void 0);
-function GetServiceRE(){
+function GetQuotedStringRE(){
 if((O===(void 0))){
-O=
-new g('^(collator|numberformat|dateformat|breakiterator)$');
+O=new h("'[^']+'",'g');
 }
 return O;
 }
 var P=(void 0);
-function GetLanguageTagRE(){
+function GetServiceRE(){
 if((P===(void 0))){
-BuildLanguageTagREs();
+P=
+new h('^(collator|numberformat|dateformat|breakiterator)$');
 }
 return P;
 }
 var Q=(void 0);
-function GetLanguageVariantRE(){
+function GetLanguageTagRE(){
 if((Q===(void 0))){
 BuildLanguageTagREs();
 }
 return Q;
 }
 var R=(void 0);
-function GetLanguageSingletonRE(){
+function GetLanguageVariantRE(){
 if((R===(void 0))){
 BuildLanguageTagREs();
 }
 return R;
 }
 var S=(void 0);
-function GetTimezoneNameCheckRE(){
+function GetLanguageSingletonRE(){
 if((S===(void 0))){
-S=new g(
-'^([A-Za-z]+)/([A-Za-z_-]+)((?:\/[A-Za-z_-]+)+)*$');
+BuildLanguageTagREs();
 }
 return S;
 }
 var T=(void 0);
-function GetTimezoneNameLocationPartRE(){
+function GetTimezoneNameCheckRE(){
 if((T===(void 0))){
-T=
-new g('^([A-Za-z]+)((?:[_-][A-Za-z]+)+)*$');
+T=new h(
+'^([A-Za-z]+)/([A-Za-z_-]+)((?:\/[A-Za-z_-]+)+)*$');
 }
 return T;
 }
-function supportedLocalesOf(U,V,W){
-if((l(GetServiceRE(),U)===null)){
-throw %make_error(7,U);
+var U=(void 0);
+function GetTimezoneNameLocationPartRE(){
+if((U===(void 0))){
+U=
+new h('^([A-Za-z]+)((?:[_-][A-Za-z]+)+)*$');
 }
-if((W===(void 0))){
-W={};
+return U;
+}
+function supportedLocalesOf(V,W,X){
+if((m(GetServiceRE(),V)===null)){
+throw %make_error(7,V);
+}
+if((X===(void 0))){
+X={};
 }else{
-W=(%_ToObject(W));
+X=(%_ToObject(X));
 }
-var X=W.localeMatcher;
-if(!(X===(void 0))){
-X=(%_ToString(X));
-if(X!=='lookup'&&X!=='best fit'){
-throw %make_range_error(174,X);
+var Y=X.localeMatcher;
+if(!(Y===(void 0))){
+Y=(%_ToString(Y));
+if(Y!=='lookup'&&Y!=='best fit'){
+throw %make_range_error(174,Y);
 }
 }else{
-X='best fit';
+Y='best fit';
 }
-var Y=initializeLocaleList(V);
-if((J[U]===(void 0))){
-J[U]=getAvailableLocalesOf(U);
+var Z=initializeLocaleList(W);
+if((K[V]===(void 0))){
+K[V]=getAvailableLocalesOf(V);
 }
-if(X==='best fit'){
+if(Y==='best fit'){
 return initializeLocaleList(bestFitSupportedLocalesOf(
-Y,J[U]));
+Z,K[V]));
 }
 return initializeLocaleList(lookupSupportedLocalesOf(
-Y,J[U]));
+Z,K[V]));
 }
-function lookupSupportedLocalesOf(Y,Z){
-var aa=new k();
-for(var ab=0;ab<Y.length;++ab){
-var ac=m(
-GetUnicodeExtensionRE(),Y[ab],'');
+function lookupSupportedLocalesOf(Z,aa){
+var ab=new l();
+for(var ac=0;ac<Z.length;++ac){
+var ad=n(
+GetUnicodeExtensionRE(),Z[ac],'');
 do{
-if(!(Z[ac]===(void 0))){
-%_Call(d,aa,Y[ab]);
+if(!(aa[ad]===(void 0))){
+%_Call(d,ab,Z[ac]);
 break;
 }
-var ad=%_Call(t,ac,'-');
-if(ad===-1){
+var ae=%_Call(u,ad,'-');
+if(ae===-1){
 break;
 }
-ac=%_Call(v,ac,0,ad);
+ad=%_Call(w,ad,0,ae);
 }while(true);
 }
-return aa;
+return ab;
 }
-function bestFitSupportedLocalesOf(Y,Z){
-return lookupSupportedLocalesOf(Y,Z);
+function bestFitSupportedLocalesOf(Z,aa){
+return lookupSupportedLocalesOf(Z,aa);
 }
-function getGetOption(W,ae){
-if((W===(void 0)))throw %make_error(4,ae);
-var af=function getOption(ag,E,ah,ai){
-if(!(W[ag]===(void 0))){
-var aj=W[ag];
-switch(E){
+function getGetOption(X,af){
+if((X===(void 0)))throw %make_error(4,af);
+var ag=function getOption(ah,F,ai,aj){
+if(!(X[ah]===(void 0))){
+var ak=X[ah];
+switch(F){
 case'boolean':
-aj=(!!(aj));
+ak=(!!(ak));
 break;
 case'string':
-aj=(%_ToString(aj));
+ak=(%_ToString(ak));
 break;
 case'number':
-aj=(%_ToNumber(aj));
+ak=(%_ToNumber(ak));
 break;
 default:
 throw %make_error(8);
 }
-if(!(ah===(void 0))&&%ArrayIndexOf(ah,aj,0)===-1){
-throw %make_range_error(184,aj,ae,ag);
-}
-return aj;
-}
-return ai;
-}
-return af;
-}
-function resolveLocale(U,Y,W){
-Y=initializeLocaleList(Y);
-var af=getGetOption(W,U);
-var X=af('localeMatcher','string',
-['lookup','best fit'],'best fit');
-var ak;
-if(X==='lookup'){
-ak=lookupMatcher(U,Y);
-}else{
-ak=bestFitMatcher(U,Y);
+if(!(ai===(void 0))&&%ArrayIndexOf(ai,ak,0)===-1){
+throw %make_range_error(184,ak,af,ah);
 }
 return ak;
 }
-function lookupMatcher(U,Y){
-if((l(GetServiceRE(),U)===null)){
-throw %make_error(7,U);
+return aj;
 }
-if((J[U]===(void 0))){
-J[U]=getAvailableLocalesOf(U);
+return ag;
 }
-for(var ab=0;ab<Y.length;++ab){
-var ac=m(
-GetAnyExtensionRE(),Y[ab],'');
+function resolveLocale(V,Z,X){
+Z=initializeLocaleList(Z);
+var ag=getGetOption(X,V);
+var Y=ag('localeMatcher','string',
+['lookup','best fit'],'best fit');
+var al;
+if(Y==='lookup'){
+al=lookupMatcher(V,Z);
+}else{
+al=bestFitMatcher(V,Z);
+}
+return al;
+}
+function lookupMatcher(V,Z){
+if((m(GetServiceRE(),V)===null)){
+throw %make_error(7,V);
+}
+if((K[V]===(void 0))){
+K[V]=getAvailableLocalesOf(V);
+}
+for(var ac=0;ac<Z.length;++ac){
+var ad=n(
+GetAnyExtensionRE(),Z[ac],'');
 do{
-if(!(J[U][ac]===(void 0))){
-var al=l(
-GetUnicodeExtensionRE(),Y[ab]);
-var am=(al===null)?'':al[0];
-return{'locale':ac,'extension':am,'position':ab};
+if(!(K[V][ad]===(void 0))){
+var am=m(
+GetUnicodeExtensionRE(),Z[ac]);
+var an=(am===null)?'':am[0];
+return{'locale':ad,'extension':an,'position':ac};
 }
-var ad=%_Call(t,ac,'-');
-if(ad===-1){
+var ae=%_Call(u,ad,'-');
+if(ae===-1){
 break;
 }
-ac=%_Call(v,ac,0,ad);
+ad=%_Call(w,ad,0,ae);
 }while(true);
 }
 return{'locale':GetDefaultICULocaleJS(),'extension':'','position':-1};
 }
-function bestFitMatcher(U,Y){
-return lookupMatcher(U,Y);
+function bestFitMatcher(V,Z){
+return lookupMatcher(V,Z);
 }
-function parseExtension(am){
-var an=%StringSplit(am,'-',4294967295);
-if(an.length<=2||
-(an[0]!==''&&an[1]!=='u')){
+function parseExtension(an){
+var ao=%StringSplit(an,'-',4294967295);
+if(ao.length<=2||
+(ao[0]!==''&&ao[1]!=='u')){
 return{};
 }
-var ao={};
-var ap=(void 0);
-var aj=(void 0);
-for(var ab=2;ab<an.length;++ab){
-var D=an[ab].length;
-var aq=an[ab];
-if(D===2){
-if(!(ap===(void 0))){
-if(!(ap in ao)){
-ao[ap]=aj;
+var ap={};
+var aq=(void 0);
+var ak=(void 0);
+for(var ac=2;ac<ao.length;++ac){
+var E=ao[ac].length;
+var ar=ao[ac];
+if(E===2){
+if(!(aq===(void 0))){
+if(!(aq in ap)){
+ap[aq]=ak;
 }
-aj=(void 0);
+ak=(void 0);
 }
-ap=aq;
-}else if(D>=3&&D<=8&&!(ap===(void 0))){
-if((aj===(void 0))){
-aj=aq;
+aq=ar;
+}else if(E>=3&&E<=8&&!(aq===(void 0))){
+if((ak===(void 0))){
+ak=ar;
 }else{
-aj=aj+"-"+aq;
+ak=ak+"-"+ar;
 }
 }else{
 return{};
 }
 }
-if(!(ap===(void 0))&&!(ap in ao)){
-ao[ap]=aj;
+if(!(aq===(void 0))&&!(aq in ap)){
+ap[aq]=ak;
 }
-return ao;
+return ap;
 }
-function setOptions(ar,ao,as,af,at){
-var am='';
-var au=function updateExtension(ap,aj){
-return'-'+ap+'-'+(%_ToString(aj));
+function setOptions(as,ap,at,ag,au){
+var an='';
+var av=function updateExtension(aq,ak){
+return'-'+aq+'-'+(%_ToString(ak));
 }
-var av=function updateProperty(ag,E,aj){
-if(E==='boolean'&&(typeof aj==='string')){
-aj=(aj==='true')?true:false;
+var aw=function updateProperty(ah,F,ak){
+if(F==='boolean'&&(typeof ak==='string')){
+ak=(ak==='true')?true:false;
 }
-if(!(ag===(void 0))){
-defineWEProperty(at,ag,aj);
+if(!(ah===(void 0))){
+defineWEProperty(au,ah,ak);
 }
 }
-for(var ap in as){
-if((%_Call(n,as,ap))){
-var aj=(void 0);
-var aw=as[ap];
-if(!(aw.property===(void 0))){
-aj=af(aw.property,aw.type,aw.values);
+for(var aq in at){
+if((%_Call(o,at,aq))){
+var ak=(void 0);
+var ax=at[aq];
+if(!(ax.property===(void 0))){
+ak=ag(ax.property,ax.type,ax.values);
 }
-if(!(aj===(void 0))){
-av(aw.property,aw.type,aj);
-am+=au(ap,aj);
+if(!(ak===(void 0))){
+aw(ax.property,ax.type,ak);
+an+=av(aq,ak);
 continue;
 }
-if((%_Call(n,ao,ap))){
-aj=ao[ap];
-if(!(aj===(void 0))){
-av(aw.property,aw.type,aj);
-am+=au(ap,aj);
-}else if(aw.type==='boolean'){
-av(aw.property,aw.type,true);
-am+=au(ap,true);
+if((%_Call(o,ap,aq))){
+ak=ap[aq];
+if(!(ak===(void 0))){
+aw(ax.property,ax.type,ak);
+an+=av(aq,ak);
+}else if(ax.type==='boolean'){
+aw(ax.property,ax.type,true);
+an+=av(aq,true);
 }
 }
 }
 }
-return am===''?'':'-u'+am;
+return an===''?'':'-u'+an;
 }
-function freezeArray(ax){
-var ay=[];
-var az=ax.length;
-for(var ab=0;ab<az;ab++){
-if(ab in ax){
-%object_define_property(ay,ab,{value:ax[ab],
+function freezeArray(ay){
+var az=[];
+var aA=ay.length;
+for(var ac=0;ac<aA;ac++){
+if(ac in ay){
+%object_define_property(az,ac,{value:ay[ac],
 configurable:false,
 writable:false,
 enumerable:true});
 }
 }
-%object_define_property(ay,'length',{value:az,writable:false});
-return ay;
+%object_define_property(az,'length',{value:aA,writable:false});
+return az;
 }
-function makeArray(ax){
-var ay=[];
-%MoveArrayContents(ax,ay);
-return ay;
+function makeArray(ay){
+var az=[];
+%MoveArrayContents(ay,az);
+return az;
 }
-function getOptimalLanguageTag(aA,ak){
-if(aA===ak){
-return aA;
+function getOptimalLanguageTag(aB,al){
+if(aB===al){
+return aB;
 }
-var V=%GetLanguageTagVariants([aA,ak]);
-if(V[0].maximized!==V[1].maximized){
-return ak;
+var W=%GetLanguageTagVariants([aB,al]);
+if(W[0].maximized!==W[1].maximized){
+return al;
 }
-var aB=new g('^'+V[1].base,'g');
-return m(aB,ak,V[0].base);
+var aC=new h('^'+W[1].base,'g');
+return n(aC,al,W[0].base);
 }
-function getAvailableLocalesOf(U){
-var aC=%AvailableLocalesOf(U);
-for(var ab in aC){
-if((%_Call(n,aC,ab))){
-var aD=l(
-/^([a-z]{2,3})-([A-Z][a-z]{3})-([A-Z]{2})$/,ab);
-if(!(aD===null)){
-aC[aD[1]+'-'+aD[3]]=null;
-}
-}
-}
-return aC;
-}
-function defineWEProperty(x,ag,aj){
-%object_define_property(x,ag,
-{value:aj,writable:true,enumerable:true});
-}
-function addWEPropertyIfDefined(x,ag,aj){
-if(!(aj===(void 0))){
-defineWEProperty(x,ag,aj);
+function getAvailableLocalesOf(V){
+var aD=%AvailableLocalesOf(V);
+for(var ac in aD){
+if((%_Call(o,aD,ac))){
+var aE=m(
+/^([a-z]{2,3})-([A-Z][a-z]{3})-([A-Z]{2})$/,ac);
+if(!(aE===null)){
+aD[aE[1]+'-'+aE[3]]=null;
 }
 }
-function defineWECProperty(x,ag,aj){
-%object_define_property(x,ag,{value:aj,
+}
+return aD;
+}
+function defineWEProperty(y,ah,ak){
+%object_define_property(y,ah,
+{value:ak,writable:true,enumerable:true});
+}
+function addWEPropertyIfDefined(y,ah,ak){
+if(!(ak===(void 0))){
+defineWEProperty(y,ah,ak);
+}
+}
+function defineWECProperty(y,ah,ak){
+%object_define_property(y,ah,{value:ak,
 writable:true,
 enumerable:true,
 configurable:true});
 }
-function addWECPropertyIfDefined(x,ag,aj){
-if(!(aj===(void 0))){
-defineWECProperty(x,ag,aj);
+function addWECPropertyIfDefined(y,ah,ak){
+if(!(ak===(void 0))){
+defineWECProperty(y,ah,ak);
 }
 }
-function toTitleCaseWord(aE){
-return %StringToUpperCase(%_Call(u,aE,0,1))+
-%StringToLowerCase(%_Call(u,aE,1));
+function toTitleCaseWord(aF){
+return %StringToUpperCase(%_Call(v,aF,0,1))+
+%StringToLowerCase(%_Call(v,aF,1));
 }
-function toTitleCaseTimezoneLocation(aF){
-var aG=l(GetTimezoneNameLocationPartRE(),aF)
-if((aG===null))throw %make_range_error(151,aF);
-var aH=toTitleCaseWord(aG[1]);
-if(!(aG[2]===(void 0))&&2<aG.length){
-var aI=%_Call(v,aG[2],0,1);
-var aD=%StringSplit(aG[2],aI,4294967295);
-for(var ab=1;ab<aD.length;ab++){
-var aJ=aD[ab]
-var aK=%StringToLowerCase(aJ);
-aH=aH+aI+
-((aK!=='es'&&
-aK!=='of'&&aK!=='au')?
-toTitleCaseWord(aJ):aK);
+function toTitleCaseTimezoneLocation(aG){
+var aH=m(GetTimezoneNameLocationPartRE(),aG)
+if((aH===null))throw %make_range_error(151,aG);
+var aI=toTitleCaseWord(aH[1]);
+if(!(aH[2]===(void 0))&&2<aH.length){
+var aJ=%_Call(w,aH[2],0,1);
+var aE=%StringSplit(aH[2],aJ,4294967295);
+for(var ac=1;ac<aE.length;ac++){
+var aK=aE[ac]
+var aL=%StringToLowerCase(aK);
+aI=aI+aJ+
+((aL!=='es'&&
+aL!=='of'&&aL!=='au')?
+toTitleCaseWord(aK):aL);
 }
 }
-return aH;
+return aI;
 }
-function canonicalizeLanguageTag(aL){
-if((!(typeof(aL)==='string')&&!(%_IsJSReceiver(aL)))||
-(aL===null)){
+function canonicalizeLanguageTag(aM){
+if((!(typeof(aM)==='string')&&!(%_IsJSReceiver(aM)))||
+(aM===null)){
 throw %make_type_error(52);
 }
-if((typeof(aL)==='string')&&
-!(l(/^[a-z]{2,3}$/,aL)===null)){
-return aL;
+if((typeof(aM)==='string')&&
+!(m(/^[a-z]{2,3}$/,aM)===null)){
+return aM;
 }
-var aM=(%_ToString(aL));
-if(isStructuallyValidLanguageTag(aM)===false){
-throw %make_range_error(163,aM);
+var aN=(%_ToString(aM));
+if(isStructuallyValidLanguageTag(aN)===false){
+throw %make_range_error(163,aN);
 }
-var aN=%CanonicalizeLanguageTag(aM);
-if(aN==='invalid-tag'){
-throw %make_range_error(163,aM);
-}
-return aN;
-}
-function canonicalizeLocaleList(V){
-var aO=new k();
-if(!(V===(void 0))){
-if(typeof V==='string'){
-%_Call(d,aO,canonicalizeLanguageTag(V));
-return aO;
-}
-var aP=(%_ToObject(V));
-var aQ=(%_ToLength(aP.length));
-for(var aR=0;aR<aQ;aR++){
-if(aR in aP){
-var aj=aP[aR];
-var aN=canonicalizeLanguageTag(aj);
-if(%ArrayIndexOf(aO,aN,0)===-1){
-%_Call(d,aO,aN);
-}
-}
-}
+var aO=%CanonicalizeLanguageTag(aN);
+if(aO==='invalid-tag'){
+throw %make_range_error(163,aN);
 }
 return aO;
 }
-function initializeLocaleList(V){
-return freezeArray(canonicalizeLocaleList(V));
+function canonicalizeLocaleList(W){
+var aP=new l();
+if(!(W===(void 0))){
+if(typeof W==='string'){
+%_Call(d,aP,canonicalizeLanguageTag(W));
+return aP;
 }
-function isStructuallyValidLanguageTag(ac){
-if((l(GetLanguageTagRE(),ac)===null)){
+var aQ=(%_ToObject(W));
+var aR=(%_ToLength(aQ.length));
+for(var aS=0;aS<aR;aS++){
+if(aS in aQ){
+var ak=aQ[aS];
+var aO=canonicalizeLanguageTag(ak);
+if(%ArrayIndexOf(aP,aO,0)===-1){
+%_Call(d,aP,aO);
+}
+}
+}
+}
+return aP;
+}
+function initializeLocaleList(W){
+return freezeArray(canonicalizeLocaleList(W));
+}
+function isStructuallyValidLanguageTag(ad){
+if((m(GetLanguageTagRE(),ad)===null)){
 return false;
 }
-if(%_Call(s,ac,'x-')===0){
+if(%_Call(t,ad,'x-')===0){
 return true;
 }
-ac=%StringSplit(ac,'-x-',4294967295)[0];
-var aS=new k();
-var aT=new k();
-var aD=%StringSplit(ac,'-',4294967295);
-for(var ab=1;ab<aD.length;ab++){
-var aj=aD[ab];
-if(!(l(GetLanguageVariantRE(),aj)===null)&&
-aT.length===0){
-if(%ArrayIndexOf(aS,aj,0)===-1){
-%_Call(d,aS,aj);
+ad=%StringSplit(ad,'-x-',4294967295)[0];
+var aT=new l();
+var aU=new l();
+var aE=%StringSplit(ad,'-',4294967295);
+for(var ac=1;ac<aE.length;ac++){
+var ak=aE[ac];
+if(!(m(GetLanguageVariantRE(),ak)===null)&&
+aU.length===0){
+if(%ArrayIndexOf(aT,ak,0)===-1){
+%_Call(d,aT,ak);
 }else{
 return false;
 }
 }
-if(!(l(GetLanguageSingletonRE(),aj)===null)){
-if(%ArrayIndexOf(aT,aj,0)===-1){
-%_Call(d,aT,aj);
+if(!(m(GetLanguageSingletonRE(),ak)===null)){
+if(%ArrayIndexOf(aU,ak,0)===-1){
+%_Call(d,aU,ak);
 }else{
 return false;
 }
@@ -11490,234 +11497,237 @@ return false;
 return true;
 }
 function BuildLanguageTagREs(){
-var aU='[a-zA-Z]';
-var aV='[0-9]';
-var aW='('+aU+'|'+aV+')';
-var aX='(art-lojban|cel-gaulish|no-bok|no-nyn|zh-guoyu|zh-hakka|'+
+var aV='[a-zA-Z]';
+var aW='[0-9]';
+var aX='('+aV+'|'+aW+')';
+var aY='(art-lojban|cel-gaulish|no-bok|no-nyn|zh-guoyu|zh-hakka|'+
 'zh-min|zh-min-nan|zh-xiang)';
-var aY='(en-GB-oed|i-ami|i-bnn|i-default|i-enochian|i-hak|'+
+var aZ='(en-GB-oed|i-ami|i-bnn|i-default|i-enochian|i-hak|'+
 'i-klingon|i-lux|i-mingo|i-navajo|i-pwn|i-tao|i-tay|'+
 'i-tsu|sgn-BE-FR|sgn-BE-NL|sgn-CH-DE)';
-var aZ='('+aY+'|'+aX+')';
-var ba='(x(-'+aW+'{1,8})+)';
-var bb='('+aV+'|[A-WY-Za-wy-z])';
-R=new g('^'+bb+'$','i');
-var am='('+bb+'(-'+aW+'{2,8})+)';
-var bc='('+aW+'{5,8}|('+aV+aW+'{3}))';
-Q=new g('^'+bc+'$','i');
-var bd='('+aU+'{2}|'+aV+'{3})';
-var be='('+aU+'{4})';
-var bf='('+aU+'{3}(-'+aU+'{3}){0,2})';
-var bg='('+aU+'{2,3}(-'+bf+')?|'+aU+'{4}|'+
-aU+'{5,8})';
-var bh=bg+'(-'+be+')?(-'+bd+')?(-'+
-bc+')*(-'+am+')*(-'+ba+')?';
-var bi=
-'^('+bh+'|'+ba+'|'+aZ+')$';
-P=new g(bi,'i');
+var ba='('+aZ+'|'+aY+')';
+var bb='(x(-'+aX+'{1,8})+)';
+var bc='('+aW+'|[A-WY-Za-wy-z])';
+S=new h('^'+bc+'$','i');
+var an='('+bc+'(-'+aX+'{2,8})+)';
+var bd='('+aX+'{5,8}|('+aW+aX+'{3}))';
+R=new h('^'+bd+'$','i');
+var be='('+aV+'{2}|'+aW+'{3})';
+var bf='('+aV+'{4})';
+var bg='('+aV+'{3}(-'+aV+'{3}){0,2})';
+var bh='('+aV+'{2,3}(-'+bg+')?|'+aV+'{4}|'+
+aV+'{5,8})';
+var bi=bh+'(-'+bf+')?(-'+be+')?(-'+
+bd+')*(-'+an+')*(-'+bb+')?';
+var bj=
+'^('+bi+'|'+bb+'|'+ba+')$';
+Q=new h(bj,'i');
 }
-var bj={
+var bk={
 get(){
 %IncrementUseCounter(16);
-return this[q];
+return this[r];
 },
-set(aj){
-this[q]=aj;
+set(ak){
+this[r]=ak;
 }
 };
-InstallFunction(I,'getCanonicalLocales',function(V){
+InstallFunction(J,'getCanonicalLocales',function(W){
 if(!(new.target===(void 0))){
 throw %make_type_error(81);
 }
-return makeArray(canonicalizeLocaleList(V));
+return makeArray(canonicalizeLocaleList(W));
 }
 );
-function initializeCollator(bk,V,W){
-if(%IsInitializedIntlObject(bk)){
+function initializeCollator(bl,W,X){
+if(%IsInitializedIntlObject(bl)){
 throw %make_type_error(125,"Collator");
 }
-if((W===(void 0))){
-W={};
+if((X===(void 0))){
+X={};
 }
-var af=getGetOption(W,'collator');
-var bl={};
-defineWEProperty(bl,'usage',af(
+var ag=getGetOption(X,'collator');
+var bm={};
+defineWEProperty(bm,'usage',ag(
 'usage','string',['sort','search'],'sort'));
-var bm=af('sensitivity','string',
+var bn=ag('sensitivity','string',
 ['base','accent','case','variant']);
-if((bm===(void 0))&&bl.usage==='sort'){
-bm='variant';
+if((bn===(void 0))&&bm.usage==='sort'){
+bn='variant';
 }
-defineWEProperty(bl,'sensitivity',bm);
-defineWEProperty(bl,'ignorePunctuation',af(
+defineWEProperty(bm,'sensitivity',bn);
+defineWEProperty(bm,'ignorePunctuation',ag(
 'ignorePunctuation','boolean',(void 0),false));
-var ac=resolveLocale('collator',V,W);
-var ao=parseExtension(ac.extension);
-var bn={
+var ad=resolveLocale('collator',W,X);
+var ap=parseExtension(ad.extension);
+var bo={
 'kn':{'property':'numeric','type':'boolean'},
 'kf':{'property':'caseFirst','type':'string',
 'values':['false','lower','upper']}
 };
 setOptions(
-W,ao,bn,af,bl);
-var bo='default';
-var am='';
-if((%_Call(n,ao,'co'))&&bl.usage==='sort'){
-var bp=[
+X,ap,bo,ag,bm);
+var bp='default';
+var an='';
+if((%_Call(o,ap,'co'))&&bm.usage==='sort'){
+var bq=[
 'big5han','dict','direct','ducet','gb2312','phonebk','phonetic',
 'pinyin','reformed','searchjl','stroke','trad','unihan','zhuyin'
 ];
-if(%ArrayIndexOf(bp,ao.co,0)!==-1){
-am='-u-co-'+ao.co;
-bo=ao.co;
+if(%ArrayIndexOf(bq,ap.co,0)!==-1){
+an='-u-co-'+ap.co;
+bp=ap.co;
 }
-}else if(bl.usage==='search'){
-am='-u-co-search';
+}else if(bm.usage==='search'){
+an='-u-co-search';
 }
-defineWEProperty(bl,'collation',bo);
-var bq=ac.locale+am;
-var ak=%object_define_properties({},{
+defineWEProperty(bm,'collation',bp);
+var br=ad.locale+an;
+var al=%object_define_properties({},{
 caseFirst:{writable:true},
-collation:{value:bl.collation,writable:true},
+collation:{value:bm.collation,writable:true},
 ignorePunctuation:{writable:true},
 locale:{writable:true},
 numeric:{writable:true},
-requestedLocale:{value:bq,writable:true},
+requestedLocale:{value:br,writable:true},
 sensitivity:{writable:true},
 strength:{writable:true},
-usage:{value:bl.usage,writable:true}
+usage:{value:bm.usage,writable:true}
 });
-var br=%CreateCollator(bq,
-bl,
-ak);
-%MarkAsInitializedIntlObjectOfType(bk,'collator',br);
-bk[q]=ak;
-return bk;
+var bs=%CreateCollator(br,
+bm,
+al);
+%MarkAsInitializedIntlObjectOfType(bl,'collator',bs);
+bl[r]=al;
+if(e){
+%object_define_property(bl,'resolved',bk);
 }
-InstallConstructor(I,'Collator',function(){
-var V=arguments[0];
-var W=arguments[1];
-if(!this||this===I){
-return new I.Collator(V,W);
+return bl;
 }
-return initializeCollator((%_ToObject(this)),V,W);
+InstallConstructor(J,'Collator',function(){
+var W=arguments[0];
+var X=arguments[1];
+if(!this||this===J){
+return new J.Collator(W,X);
+}
+return initializeCollator((%_ToObject(this)),W,X);
 }
 );
-InstallFunction(I.Collator.prototype,'resolvedOptions',function(){
+InstallFunction(J.Collator.prototype,'resolvedOptions',function(){
 if(!(new.target===(void 0))){
 throw %make_type_error(81);
 }
 if(!%IsInitializedIntlObjectOfType(this,'collator')){
 throw %make_type_error(126,"Collator");
 }
-var bs=this;
-var ac=getOptimalLanguageTag(bs[q].requestedLocale,
-bs[q].locale);
+var bt=this;
+var ad=getOptimalLanguageTag(bt[r].requestedLocale,
+bt[r].locale);
 return{
-locale:ac,
-usage:bs[q].usage,
-sensitivity:bs[q].sensitivity,
-ignorePunctuation:bs[q].ignorePunctuation,
-numeric:bs[q].numeric,
-caseFirst:bs[q].caseFirst,
-collation:bs[q].collation
+locale:ad,
+usage:bt[r].usage,
+sensitivity:bt[r].sensitivity,
+ignorePunctuation:bt[r].ignorePunctuation,
+numeric:bt[r].numeric,
+caseFirst:bt[r].caseFirst,
+collation:bt[r].collation
 };
 }
 );
-InstallFunction(I.Collator,'supportedLocalesOf',function(V){
+InstallFunction(J.Collator,'supportedLocalesOf',function(W){
 if(!(new.target===(void 0))){
 throw %make_type_error(81);
 }
-return supportedLocalesOf('collator',V,arguments[1]);
+return supportedLocalesOf('collator',W,arguments[1]);
 }
 );
-function compare(bk,bt,bu){
-return %InternalCompare(%GetImplFromInitializedIntlObject(bk),
-(%_ToString(bt)),(%_ToString(bu)));
+function compare(bl,bu,bv){
+return %InternalCompare(%GetImplFromInitializedIntlObject(bl),
+(%_ToString(bu)),(%_ToString(bv)));
 };
-AddBoundMethod(I.Collator,'compare',compare,2,'collator');
-function isWellFormedCurrencyCode(bv){
-return typeof bv=="string"&&bv.length==3&&
-(l(/[^A-Za-z]/,bv)===null);
+AddBoundMethod(J.Collator,'compare',compare,2,'collator');
+function isWellFormedCurrencyCode(bw){
+return typeof bw=="string"&&bw.length==3&&
+(m(/[^A-Za-z]/,bw)===null);
 }
-function getNumberOption(W,ag,bw,bx,by){
-var aj=W[ag];
-if(!(aj===(void 0))){
-aj=(%_ToNumber(aj));
-if((!%_IsSmi(%IS_VAR(aj))&&!(aj==aj))||aj<bw||aj>bx){
-throw %make_range_error(177,ag);
+function getNumberOption(X,ah,bx,by,bz){
+var ak=X[ah];
+if(!(ak===(void 0))){
+ak=(%_ToNumber(ak));
+if((!%_IsSmi(%IS_VAR(ak))&&!(ak==ak))||ak<bx||ak>by){
+throw %make_range_error(177,ah);
 }
-return %math_floor(aj);
+return %math_floor(ak);
 }
-return by;
+return bz;
 }
-var bz={
+var bA={
 get(){
 %IncrementUseCounter(15);
-return this[p];
+return this[q];
 },
-set(aj){
-this[p]=aj;
+set(ak){
+this[q]=ak;
 }
 };
-function initializeNumberFormat(bA,V,W){
-if(%IsInitializedIntlObject(bA)){
+function initializeNumberFormat(bB,W,X){
+if(%IsInitializedIntlObject(bB)){
 throw %make_type_error(125,"NumberFormat");
 }
-if((W===(void 0))){
-W={};
+if((X===(void 0))){
+X={};
 }
-var af=getGetOption(W,'numberformat');
-var ac=resolveLocale('numberformat',V,W);
-var bl={};
-defineWEProperty(bl,'style',af(
+var ag=getGetOption(X,'numberformat');
+var ad=resolveLocale('numberformat',W,X);
+var bm={};
+defineWEProperty(bm,'style',ag(
 'style','string',['decimal','percent','currency'],'decimal'));
-var bv=af('currency','string');
-if(!(bv===(void 0))&&!isWellFormedCurrencyCode(bv)){
-throw %make_range_error(158,bv);
+var bw=ag('currency','string');
+if(!(bw===(void 0))&&!isWellFormedCurrencyCode(bw)){
+throw %make_range_error(158,bw);
 }
-if(bl.style==='currency'&&(bv===(void 0))){
+if(bm.style==='currency'&&(bw===(void 0))){
 throw %make_type_error(29);
 }
-var bB=af(
+var bC=ag(
 'currencyDisplay','string',['code','symbol','name'],'symbol');
-if(bl.style==='currency'){
-defineWEProperty(bl,'currency',%StringToUpperCase(bv));
-defineWEProperty(bl,'currencyDisplay',bB);
+if(bm.style==='currency'){
+defineWEProperty(bm,'currency',%StringToUpperCase(bw));
+defineWEProperty(bm,'currencyDisplay',bC);
 }
-var bC=getNumberOption(W,'minimumIntegerDigits',1,21,1);
-defineWEProperty(bl,'minimumIntegerDigits',bC);
-var bD=W['minimumFractionDigits'];
-var bE=W['maximumFractionDigits'];
-if(!(bD===(void 0))||bl.style!=='currency'){
-bD=getNumberOption(W,'minimumFractionDigits',0,20,0);
-defineWEProperty(bl,'minimumFractionDigits',bD);
+var bD=getNumberOption(X,'minimumIntegerDigits',1,21,1);
+defineWEProperty(bm,'minimumIntegerDigits',bD);
+var bE=X['minimumFractionDigits'];
+var bF=X['maximumFractionDigits'];
+if(!(bE===(void 0))||bm.style!=='currency'){
+bE=getNumberOption(X,'minimumFractionDigits',0,20,0);
+defineWEProperty(bm,'minimumFractionDigits',bE);
 }
-if(!(bE===(void 0))||bl.style!=='currency'){
-var bF=bl.style==='percent'?0:3;
-bD=(bD===(void 0))?0:bD;
-var bG=(bD>bF)?bD:bF;
-bE=getNumberOption(W,'maximumFractionDigits',bD,20,bG);
-defineWEProperty(bl,'maximumFractionDigits',bE);
+if(!(bF===(void 0))||bm.style!=='currency'){
+var bG=bm.style==='percent'?0:3;
+bE=(bE===(void 0))?0:bE;
+var bH=(bE>bG)?bE:bG;
+bF=getNumberOption(X,'maximumFractionDigits',bE,20,bH);
+defineWEProperty(bm,'maximumFractionDigits',bF);
 }
-var bH=W['minimumSignificantDigits'];
-var bI=W['maximumSignificantDigits'];
-if(!(bH===(void 0))||!(bI===(void 0))){
-bH=getNumberOption(W,'minimumSignificantDigits',1,21,0);
-defineWEProperty(bl,'minimumSignificantDigits',bH);
-bI=getNumberOption(W,'maximumSignificantDigits',bH,21,21);
-defineWEProperty(bl,'maximumSignificantDigits',bI);
+var bI=X['minimumSignificantDigits'];
+var bJ=X['maximumSignificantDigits'];
+if(!(bI===(void 0))||!(bJ===(void 0))){
+bI=getNumberOption(X,'minimumSignificantDigits',1,21,0);
+defineWEProperty(bm,'minimumSignificantDigits',bI);
+bJ=getNumberOption(X,'maximumSignificantDigits',bI,21,21);
+defineWEProperty(bm,'maximumSignificantDigits',bJ);
 }
-defineWEProperty(bl,'useGrouping',af(
+defineWEProperty(bm,'useGrouping',ag(
 'useGrouping','boolean',(void 0),true));
-var ao=parseExtension(ac.extension);
-var bJ={
+var ap=parseExtension(ad.extension);
+var bK={
 'nu':{'property':(void 0),'type':'string'}
 };
-var am=setOptions(W,ao,bJ,
-af,bl);
-var bq=ac.locale+am;
-var ak=%object_define_properties({},{
+var an=setOptions(X,ap,bK,
+ag,bm);
+var br=ad.locale+an;
+var al=%object_define_properties({},{
 currency:{writable:true},
 currencyDisplay:{writable:true},
 locale:{writable:true},
@@ -11725,252 +11735,260 @@ maximumFractionDigits:{writable:true},
 minimumFractionDigits:{writable:true},
 minimumIntegerDigits:{writable:true},
 numberingSystem:{writable:true},
-requestedLocale:{value:bq,writable:true},
-style:{value:bl.style,writable:true},
+requestedLocale:{value:br,writable:true},
+style:{value:bm.style,writable:true},
 useGrouping:{writable:true}
 });
-if((%_Call(n,bl,'minimumSignificantDigits'))){
-defineWEProperty(ak,'minimumSignificantDigits',(void 0));
+if((%_Call(o,bm,'minimumSignificantDigits'))){
+defineWEProperty(al,'minimumSignificantDigits',(void 0));
 }
-if((%_Call(n,bl,'maximumSignificantDigits'))){
-defineWEProperty(ak,'maximumSignificantDigits',(void 0));
+if((%_Call(o,bm,'maximumSignificantDigits'))){
+defineWEProperty(al,'maximumSignificantDigits',(void 0));
 }
-var bK=%CreateNumberFormat(bq,
-bl,
-ak);
-if(bl.style==='currency'){
-%object_define_property(ak,'currencyDisplay',
-{value:bB,writable:true});
+var bL=%CreateNumberFormat(br,
+bm,
+al);
+if(bm.style==='currency'){
+%object_define_property(al,'currencyDisplay',
+{value:bC,writable:true});
 }
-%MarkAsInitializedIntlObjectOfType(bA,'numberformat',bK);
-bA[q]=ak;
-return bA;
+%MarkAsInitializedIntlObjectOfType(bB,'numberformat',bL);
+bB[r]=al;
+if(e){
+%object_define_property(al,'pattern',bA);
+%object_define_property(bB,'resolved',bk);
 }
-InstallConstructor(I,'NumberFormat',function(){
-var V=arguments[0];
-var W=arguments[1];
-if(!this||this===I){
-return new I.NumberFormat(V,W);
+return bB;
 }
-return initializeNumberFormat((%_ToObject(this)),V,W);
+InstallConstructor(J,'NumberFormat',function(){
+var W=arguments[0];
+var X=arguments[1];
+if(!this||this===J){
+return new J.NumberFormat(W,X);
+}
+return initializeNumberFormat((%_ToObject(this)),W,X);
 }
 );
-InstallFunction(I.NumberFormat.prototype,'resolvedOptions',function(){
+InstallFunction(J.NumberFormat.prototype,'resolvedOptions',function(){
 if(!(new.target===(void 0))){
 throw %make_type_error(81);
 }
 if(!%IsInitializedIntlObjectOfType(this,'numberformat')){
 throw %make_type_error(126,"NumberFormat");
 }
-var bL=this;
-var ac=getOptimalLanguageTag(bL[q].requestedLocale,
-bL[q].locale);
-var aH={
-locale:ac,
-numberingSystem:bL[q].numberingSystem,
-style:bL[q].style,
-useGrouping:bL[q].useGrouping,
-minimumIntegerDigits:bL[q].minimumIntegerDigits,
-minimumFractionDigits:bL[q].minimumFractionDigits,
-maximumFractionDigits:bL[q].maximumFractionDigits,
+var bM=this;
+var ad=getOptimalLanguageTag(bM[r].requestedLocale,
+bM[r].locale);
+var aI={
+locale:ad,
+numberingSystem:bM[r].numberingSystem,
+style:bM[r].style,
+useGrouping:bM[r].useGrouping,
+minimumIntegerDigits:bM[r].minimumIntegerDigits,
+minimumFractionDigits:bM[r].minimumFractionDigits,
+maximumFractionDigits:bM[r].maximumFractionDigits,
 };
-if(aH.style==='currency'){
-defineWECProperty(aH,'currency',bL[q].currency);
-defineWECProperty(aH,'currencyDisplay',
-bL[q].currencyDisplay);
+if(aI.style==='currency'){
+defineWECProperty(aI,'currency',bM[r].currency);
+defineWECProperty(aI,'currencyDisplay',
+bM[r].currencyDisplay);
 }
-if((%_Call(n,bL[q],'minimumSignificantDigits'))){
-defineWECProperty(aH,'minimumSignificantDigits',
-bL[q].minimumSignificantDigits);
+if((%_Call(o,bM[r],'minimumSignificantDigits'))){
+defineWECProperty(aI,'minimumSignificantDigits',
+bM[r].minimumSignificantDigits);
 }
-if((%_Call(n,bL[q],'maximumSignificantDigits'))){
-defineWECProperty(aH,'maximumSignificantDigits',
-bL[q].maximumSignificantDigits);
+if((%_Call(o,bM[r],'maximumSignificantDigits'))){
+defineWECProperty(aI,'maximumSignificantDigits',
+bM[r].maximumSignificantDigits);
 }
-return aH;
+return aI;
 }
 );
-InstallFunction(I.NumberFormat,'supportedLocalesOf',function(V){
+InstallFunction(J.NumberFormat,'supportedLocalesOf',function(W){
 if(!(new.target===(void 0))){
 throw %make_type_error(81);
 }
-return supportedLocalesOf('numberformat',V,arguments[1]);
+return supportedLocalesOf('numberformat',W,arguments[1]);
 }
 );
-function formatNumber(bK,aj){
-var bM=(%_ToNumber(aj))+0;
-return %InternalNumberFormat(%GetImplFromInitializedIntlObject(bK),
-bM);
+function formatNumber(bL,ak){
+var bN=(%_ToNumber(ak))+0;
+return %InternalNumberFormat(%GetImplFromInitializedIntlObject(bL),
+bN);
 }
-AddBoundMethod(I.NumberFormat,'format',formatNumber,1,'numberformat');
-function toLDMLString(W){
-var af=getGetOption(W,'dateformat');
-var bN='';
-var bO=af('weekday','string',['narrow','short','long']);
-bN+=appendToLDMLString(
-bO,{narrow:'EEEEE',short:'EEE',long:'EEEE'});
-bO=af('era','string',['narrow','short','long']);
-bN+=appendToLDMLString(
-bO,{narrow:'GGGGG',short:'GGG',long:'GGGG'});
-bO=af('year','string',['2-digit','numeric']);
-bN+=appendToLDMLString(bO,{'2-digit':'yy','numeric':'y'});
-bO=af('month','string',
+function IntlParseNumber(bL,ak){
+return %InternalNumberParse(%GetImplFromInitializedIntlObject(bL),
+(%_ToString(ak)));
+}
+AddBoundMethod(J.NumberFormat,'format',formatNumber,1,'numberformat');
+function toLDMLString(X){
+var ag=getGetOption(X,'dateformat');
+var bO='';
+var bP=ag('weekday','string',['narrow','short','long']);
+bO+=appendToLDMLString(
+bP,{narrow:'EEEEE',short:'EEE',long:'EEEE'});
+bP=ag('era','string',['narrow','short','long']);
+bO+=appendToLDMLString(
+bP,{narrow:'GGGGG',short:'GGG',long:'GGGG'});
+bP=ag('year','string',['2-digit','numeric']);
+bO+=appendToLDMLString(bP,{'2-digit':'yy','numeric':'y'});
+bP=ag('month','string',
 ['2-digit','numeric','narrow','short','long']);
-bN+=appendToLDMLString(bO,{'2-digit':'MM','numeric':'M',
+bO+=appendToLDMLString(bP,{'2-digit':'MM','numeric':'M',
 'narrow':'MMMMM','short':'MMM','long':'MMMM'});
-bO=af('day','string',['2-digit','numeric']);
-bN+=appendToLDMLString(
-bO,{'2-digit':'dd','numeric':'d'});
-var bP=af('hour12','boolean');
-bO=af('hour','string',['2-digit','numeric']);
-if((bP===(void 0))){
-bN+=appendToLDMLString(bO,{'2-digit':'jj','numeric':'j'});
-}else if(bP===true){
-bN+=appendToLDMLString(bO,{'2-digit':'hh','numeric':'h'});
+bP=ag('day','string',['2-digit','numeric']);
+bO+=appendToLDMLString(
+bP,{'2-digit':'dd','numeric':'d'});
+var bQ=ag('hour12','boolean');
+bP=ag('hour','string',['2-digit','numeric']);
+if((bQ===(void 0))){
+bO+=appendToLDMLString(bP,{'2-digit':'jj','numeric':'j'});
+}else if(bQ===true){
+bO+=appendToLDMLString(bP,{'2-digit':'hh','numeric':'h'});
 }else{
-bN+=appendToLDMLString(bO,{'2-digit':'HH','numeric':'H'});
+bO+=appendToLDMLString(bP,{'2-digit':'HH','numeric':'H'});
 }
-bO=af('minute','string',['2-digit','numeric']);
-bN+=appendToLDMLString(bO,{'2-digit':'mm','numeric':'m'});
-bO=af('second','string',['2-digit','numeric']);
-bN+=appendToLDMLString(bO,{'2-digit':'ss','numeric':'s'});
-bO=af('timeZoneName','string',['short','long']);
-bN+=appendToLDMLString(bO,{short:'z',long:'zzzz'});
-return bN;
+bP=ag('minute','string',['2-digit','numeric']);
+bO+=appendToLDMLString(bP,{'2-digit':'mm','numeric':'m'});
+bP=ag('second','string',['2-digit','numeric']);
+bO+=appendToLDMLString(bP,{'2-digit':'ss','numeric':'s'});
+bP=ag('timeZoneName','string',['short','long']);
+bO+=appendToLDMLString(bP,{short:'z',long:'zzzz'});
+return bO;
 }
-function appendToLDMLString(bO,bQ){
-if(!(bO===(void 0))){
-return bQ[bO];
+function appendToLDMLString(bP,bR){
+if(!(bP===(void 0))){
+return bR[bP];
 }else{
 return'';
 }
 }
-function fromLDMLString(bN){
-bN=m(GetQuotedStringRE(),bN,'');
-var W={};
-var aG=l(/E{3,5}/,bN);
-W=appendToDateTimeObject(
-W,'weekday',aG,{EEEEE:'narrow',EEE:'short',EEEE:'long'});
-aG=l(/G{3,5}/,bN);
-W=appendToDateTimeObject(
-W,'era',aG,{GGGGG:'narrow',GGG:'short',GGGG:'long'});
-aG=l(/y{1,2}/,bN);
-W=appendToDateTimeObject(
-W,'year',aG,{y:'numeric',yy:'2-digit'});
-aG=l(/M{1,5}/,bN);
-W=appendToDateTimeObject(W,'month',aG,{MM:'2-digit',
+function fromLDMLString(bO){
+bO=n(GetQuotedStringRE(),bO,'');
+var X={};
+var aH=m(/E{3,5}/,bO);
+X=appendToDateTimeObject(
+X,'weekday',aH,{EEEEE:'narrow',EEE:'short',EEEE:'long'});
+aH=m(/G{3,5}/,bO);
+X=appendToDateTimeObject(
+X,'era',aH,{GGGGG:'narrow',GGG:'short',GGGG:'long'});
+aH=m(/y{1,2}/,bO);
+X=appendToDateTimeObject(
+X,'year',aH,{y:'numeric',yy:'2-digit'});
+aH=m(/M{1,5}/,bO);
+X=appendToDateTimeObject(X,'month',aH,{MM:'2-digit',
 M:'numeric',MMMMM:'narrow',MMM:'short',MMMM:'long'});
-aG=l(/L{1,5}/,bN);
-W=appendToDateTimeObject(W,'month',aG,{LL:'2-digit',
+aH=m(/L{1,5}/,bO);
+X=appendToDateTimeObject(X,'month',aH,{LL:'2-digit',
 L:'numeric',LLLLL:'narrow',LLL:'short',LLLL:'long'});
-aG=l(/d{1,2}/,bN);
-W=appendToDateTimeObject(
-W,'day',aG,{d:'numeric',dd:'2-digit'});
-aG=l(/h{1,2}/,bN);
-if(aG!==null){
-W['hour12']=true;
+aH=m(/d{1,2}/,bO);
+X=appendToDateTimeObject(
+X,'day',aH,{d:'numeric',dd:'2-digit'});
+aH=m(/h{1,2}/,bO);
+if(aH!==null){
+X['hour12']=true;
 }
-W=appendToDateTimeObject(
-W,'hour',aG,{h:'numeric',hh:'2-digit'});
-aG=l(/H{1,2}/,bN);
-if(aG!==null){
-W['hour12']=false;
+X=appendToDateTimeObject(
+X,'hour',aH,{h:'numeric',hh:'2-digit'});
+aH=m(/H{1,2}/,bO);
+if(aH!==null){
+X['hour12']=false;
 }
-W=appendToDateTimeObject(
-W,'hour',aG,{H:'numeric',HH:'2-digit'});
-aG=l(/m{1,2}/,bN);
-W=appendToDateTimeObject(
-W,'minute',aG,{m:'numeric',mm:'2-digit'});
-aG=l(/s{1,2}/,bN);
-W=appendToDateTimeObject(
-W,'second',aG,{s:'numeric',ss:'2-digit'});
-aG=l(/z|zzzz/,bN);
-W=appendToDateTimeObject(
-W,'timeZoneName',aG,{z:'short',zzzz:'long'});
-return W;
+X=appendToDateTimeObject(
+X,'hour',aH,{H:'numeric',HH:'2-digit'});
+aH=m(/m{1,2}/,bO);
+X=appendToDateTimeObject(
+X,'minute',aH,{m:'numeric',mm:'2-digit'});
+aH=m(/s{1,2}/,bO);
+X=appendToDateTimeObject(
+X,'second',aH,{s:'numeric',ss:'2-digit'});
+aH=m(/z|zzzz/,bO);
+X=appendToDateTimeObject(
+X,'timeZoneName',aH,{z:'short',zzzz:'long'});
+return X;
 }
-function appendToDateTimeObject(W,bO,aG,bQ){
-if((aG===null)){
-if(!(%_Call(n,W,bO))){
-defineWEProperty(W,bO,(void 0));
+function appendToDateTimeObject(X,bP,aH,bR){
+if((aH===null)){
+if(!(%_Call(o,X,bP))){
+defineWEProperty(X,bP,(void 0));
 }
-return W;
+return X;
 }
-var ag=aG[0];
-defineWEProperty(W,bO,bQ[ag]);
-return W;
+var ah=aH[0];
+defineWEProperty(X,bP,bR[ah]);
+return X;
 }
-function toDateTimeOptions(W,bR,bS){
-if((W===(void 0))){
-W={};
+function toDateTimeOptions(X,bS,bT){
+if((X===(void 0))){
+X={};
 }else{
-W=(%_ToObject(W));
+X=(%_ToObject(X));
 }
-var bT=true;
-if((bR==='date'||bR==='any')&&
-(!(W.weekday===(void 0))||!(W.year===(void 0))||
-!(W.month===(void 0))||!(W.day===(void 0)))){
-bT=false;
+var bU=true;
+if((bS==='date'||bS==='any')&&
+(!(X.weekday===(void 0))||!(X.year===(void 0))||
+!(X.month===(void 0))||!(X.day===(void 0)))){
+bU=false;
 }
-if((bR==='time'||bR==='any')&&
-(!(W.hour===(void 0))||!(W.minute===(void 0))||
-!(W.second===(void 0)))){
-bT=false;
+if((bS==='time'||bS==='any')&&
+(!(X.hour===(void 0))||!(X.minute===(void 0))||
+!(X.second===(void 0)))){
+bU=false;
 }
-if(bT&&(bS==='date'||bS==='all')){
-%object_define_property(W,'year',{value:'numeric',
+if(bU&&(bT==='date'||bT==='all')){
+%object_define_property(X,'year',{value:'numeric',
 writable:true,
 enumerable:true,
 configurable:true});
-%object_define_property(W,'month',{value:'numeric',
+%object_define_property(X,'month',{value:'numeric',
 writable:true,
 enumerable:true,
 configurable:true});
-%object_define_property(W,'day',{value:'numeric',
-writable:true,
-enumerable:true,
-configurable:true});
-}
-if(bT&&(bS==='time'||bS==='all')){
-%object_define_property(W,'hour',{value:'numeric',
-writable:true,
-enumerable:true,
-configurable:true});
-%object_define_property(W,'minute',{value:'numeric',
-writable:true,
-enumerable:true,
-configurable:true});
-%object_define_property(W,'second',{value:'numeric',
+%object_define_property(X,'day',{value:'numeric',
 writable:true,
 enumerable:true,
 configurable:true});
 }
-return W;
+if(bU&&(bT==='time'||bT==='all')){
+%object_define_property(X,'hour',{value:'numeric',
+writable:true,
+enumerable:true,
+configurable:true});
+%object_define_property(X,'minute',{value:'numeric',
+writable:true,
+enumerable:true,
+configurable:true});
+%object_define_property(X,'second',{value:'numeric',
+writable:true,
+enumerable:true,
+configurable:true});
 }
-function initializeDateTimeFormat(bU,V,W){
-if(%IsInitializedIntlObject(bU)){
+return X;
+}
+function initializeDateTimeFormat(bV,W,X){
+if(%IsInitializedIntlObject(bV)){
 throw %make_type_error(125,"DateTimeFormat");
 }
-if((W===(void 0))){
-W={};
+if((X===(void 0))){
+X={};
 }
-var ac=resolveLocale('dateformat',V,W);
-W=toDateTimeOptions(W,'any','date');
-var af=getGetOption(W,'dateformat');
-var X=af('formatMatcher','string',
+var ad=resolveLocale('dateformat',W,X);
+X=toDateTimeOptions(X,'any','date');
+var ag=getGetOption(X,'dateformat');
+var Y=ag('formatMatcher','string',
 ['basic','best fit'],'best fit');
-var bN=toLDMLString(W);
-var bV=canonicalizeTimeZoneID(W.timeZone);
-var bl={};
-var ao=parseExtension(ac.extension);
-var bW={
+var bO=toLDMLString(X);
+var bW=canonicalizeTimeZoneID(X.timeZone);
+var bm={};
+var ap=parseExtension(ad.extension);
+var bX={
 'ca':{'property':(void 0),'type':'string'},
 'nu':{'property':(void 0),'type':'string'}
 };
-var am=setOptions(W,ao,bW,
-af,bl);
-var bq=ac.locale+am;
-var ak=%object_define_properties({},{
+var an=setOptions(X,ap,bX,
+ag,bm);
+var br=ad.locale+an;
+var al=%object_define_properties({},{
 calendar:{writable:true},
 day:{writable:true},
 era:{writable:true},
@@ -11980,90 +11998,94 @@ locale:{writable:true},
 minute:{writable:true},
 month:{writable:true},
 numberingSystem:{writable:true},
-[p]:{writable:true},
-requestedLocale:{value:bq,writable:true},
+[q]:{writable:true},
+requestedLocale:{value:br,writable:true},
 second:{writable:true},
 timeZone:{writable:true},
 timeZoneName:{writable:true},
-tz:{value:bV,writable:true},
+tz:{value:bW,writable:true},
 weekday:{writable:true},
 year:{writable:true}
 });
-var bK=%CreateDateTimeFormat(
-bq,{skeleton:bN,timeZone:bV},ak);
-if(ak.timeZone==="Etc/Unknown"){
-throw %make_range_error(183,bV);
+var bL=%CreateDateTimeFormat(
+br,{skeleton:bO,timeZone:bW},al);
+if(al.timeZone==="Etc/Unknown"){
+throw %make_range_error(183,bW);
 }
-%MarkAsInitializedIntlObjectOfType(bU,'dateformat',bK);
-bU[q]=ak;
-return bU;
+%MarkAsInitializedIntlObjectOfType(bV,'dateformat',bL);
+bV[r]=al;
+if(e){
+%object_define_property(al,'pattern',bA);
+%object_define_property(bV,'resolved',bk);
 }
-InstallConstructor(I,'DateTimeFormat',function(){
-var V=arguments[0];
-var W=arguments[1];
-if(!this||this===I){
-return new I.DateTimeFormat(V,W);
+return bV;
 }
-return initializeDateTimeFormat((%_ToObject(this)),V,W);
+InstallConstructor(J,'DateTimeFormat',function(){
+var W=arguments[0];
+var X=arguments[1];
+if(!this||this===J){
+return new J.DateTimeFormat(W,X);
+}
+return initializeDateTimeFormat((%_ToObject(this)),W,X);
 }
 );
-InstallFunction(I.DateTimeFormat.prototype,'resolvedOptions',function(){
+InstallFunction(J.DateTimeFormat.prototype,'resolvedOptions',function(){
 if(!(new.target===(void 0))){
 throw %make_type_error(81);
 }
 if(!%IsInitializedIntlObjectOfType(this,'dateformat')){
 throw %make_type_error(126,"DateTimeFormat");
 }
-var bX={
+var bY={
 'gregorian':'gregory',
 'ethiopic-amete-alem':'ethioaa'
 };
-var bL=this;
-var bY=fromLDMLString(bL[q][p]);
-var bZ=bX[bL[q].calendar];
-if((bZ===(void 0))){
-bZ=bL[q].calendar;
+var bM=this;
+var bZ=fromLDMLString(bM[r][q]);
+var ca=bY[bM[r].calendar];
+if((ca===(void 0))){
+ca=bM[r].calendar;
 }
-var ac=getOptimalLanguageTag(bL[q].requestedLocale,
-bL[q].locale);
-var aH={
-locale:ac,
-numberingSystem:bL[q].numberingSystem,
-calendar:bZ,
-timeZone:bL[q].timeZone
+var ad=getOptimalLanguageTag(bM[r].requestedLocale,
+bM[r].locale);
+var aI={
+locale:ad,
+numberingSystem:bM[r].numberingSystem,
+calendar:ca,
+timeZone:bM[r].timeZone
 };
-addWECPropertyIfDefined(aH,'timeZoneName',bY.timeZoneName);
-addWECPropertyIfDefined(aH,'era',bY.era);
-addWECPropertyIfDefined(aH,'year',bY.year);
-addWECPropertyIfDefined(aH,'month',bY.month);
-addWECPropertyIfDefined(aH,'day',bY.day);
-addWECPropertyIfDefined(aH,'weekday',bY.weekday);
-addWECPropertyIfDefined(aH,'hour12',bY.hour12);
-addWECPropertyIfDefined(aH,'hour',bY.hour);
-addWECPropertyIfDefined(aH,'minute',bY.minute);
-addWECPropertyIfDefined(aH,'second',bY.second);
-return aH;
+addWECPropertyIfDefined(aI,'timeZoneName',bZ.timeZoneName);
+addWECPropertyIfDefined(aI,'era',bZ.era);
+addWECPropertyIfDefined(aI,'year',bZ.year);
+addWECPropertyIfDefined(aI,'month',bZ.month);
+addWECPropertyIfDefined(aI,'day',bZ.day);
+addWECPropertyIfDefined(aI,'weekday',bZ.weekday);
+addWECPropertyIfDefined(aI,'hour12',bZ.hour12);
+addWECPropertyIfDefined(aI,'hour',bZ.hour);
+addWECPropertyIfDefined(aI,'minute',bZ.minute);
+addWECPropertyIfDefined(aI,'second',bZ.second);
+return aI;
 }
 );
-InstallFunction(I.DateTimeFormat,'supportedLocalesOf',function(V){
+InstallFunction(J.DateTimeFormat,'supportedLocalesOf',function(W){
 if(!(new.target===(void 0))){
 throw %make_type_error(81);
 }
-return supportedLocalesOf('dateformat',V,arguments[1]);
+return supportedLocalesOf('dateformat',W,arguments[1]);
 }
 );
-function formatDate(bK,ca){
-var cb;
-if((ca===(void 0))){
-cb=%DateCurrentTime();
+function formatDate(bL,cb){
+var cc;
+if((cb===(void 0))){
+cc=%DateCurrentTime();
 }else{
-cb=(%_ToNumber(ca));
+cc=(%_ToNumber(cb));
 }
-if(!(%_IsSmi(%IS_VAR(cb))||((cb==cb)&&(cb!=1/0)&&(cb!=-1/0))))throw %make_range_error(149);
-return %InternalDateFormat(%GetImplFromInitializedIntlObject(bK),
-new e(cb));
+if(!(%_IsSmi(%IS_VAR(cc))||((cc==cc)&&(cc!=1/0)&&(cc!=-1/0))))throw %make_range_error(149);
+return %InternalDateFormat(%GetImplFromInitializedIntlObject(bL),
+new f(cc));
 }
-function FormatDateToParts(ca){
+function FormatDateToParts(cb){
 if(!(new.target===(void 0))){
 throw %make_type_error(81);
 }
@@ -12071,75 +12093,82 @@ if((%IS_VAR(this)===null)||(this===(void 0)))throw %make_type_error(17,"Intl.Dat
 if(!(typeof(this)==='object')){
 throw %make_type_error(16,this);
 }
-var cb;
-if((ca===(void 0))){
-cb=%DateCurrentTime();
+var cc;
+if((cb===(void 0))){
+cc=%DateCurrentTime();
 }else{
-cb=(%_ToNumber(ca));
+cc=(%_ToNumber(cb));
 }
-if(!(%_IsSmi(%IS_VAR(cb))||((cb==cb)&&(cb!=1/0)&&(cb!=-1/0))))throw %make_range_error(149);
+if(!(%_IsSmi(%IS_VAR(cc))||((cc==cc)&&(cc!=1/0)&&(cc!=-1/0))))throw %make_range_error(149);
 return %InternalDateFormatToParts(
-%GetImplFromInitializedIntlObject(this),new e(cb));
+%GetImplFromInitializedIntlObject(this),new f(cc));
 }
 %FunctionSetLength(FormatDateToParts,0);
-AddBoundMethod(I.DateTimeFormat,'format',formatDate,0,'dateformat');
-function canonicalizeTimeZoneID(cc){
-if((cc===(void 0))){
-return cc;
+function IntlParseDate(bL,ak){
+return %InternalDateParse(%GetImplFromInitializedIntlObject(bL),
+(%_ToString(ak)));
 }
-cc=(%_ToString(cc));
-var cd=%StringToUpperCase(cc);
-if(cd==='UTC'||cd==='GMT'||
-cd==='ETC/UTC'||cd==='ETC/GMT'){
+AddBoundMethod(J.DateTimeFormat,'format',formatDate,0,'dateformat');
+function canonicalizeTimeZoneID(cd){
+if((cd===(void 0))){
+return cd;
+}
+cd=(%_ToString(cd));
+var ce=%StringToUpperCase(cd);
+if(ce==='UTC'||ce==='GMT'||
+ce==='ETC/UTC'||ce==='ETC/GMT'){
 return'UTC';
 }
-var aG=l(GetTimezoneNameCheckRE(),cc);
-if((aG===null))throw %make_range_error(150,cc);
-var aH=toTitleCaseTimezoneLocation(aG[1])+'/'+
-toTitleCaseTimezoneLocation(aG[2]);
-if(!(aG[3]===(void 0))&&3<aG.length){
-var ce=%StringSplit(aG[3],'/',4294967295);
-for(var ab=1;ab<ce.length;ab++){
-aH=aH+'/'+toTitleCaseTimezoneLocation(ce[ab]);
+var aH=m(GetTimezoneNameCheckRE(),cd);
+if((aH===null))throw %make_range_error(150,cd);
+var aI=toTitleCaseTimezoneLocation(aH[1])+'/'+
+toTitleCaseTimezoneLocation(aH[2]);
+if(!(aH[3]===(void 0))&&3<aH.length){
+var cf=%StringSplit(aH[3],'/',4294967295);
+for(var ac=1;ac<cf.length;ac++){
+aI=aI+'/'+toTitleCaseTimezoneLocation(cf[ac]);
 }
 }
-return aH;
+return aI;
 }
-function initializeBreakIterator(cf,V,W){
-if(%IsInitializedIntlObject(cf)){
+function initializeBreakIterator(cg,W,X){
+if(%IsInitializedIntlObject(cg)){
 throw %make_type_error(125,"v8BreakIterator");
 }
-if((W===(void 0))){
-W={};
+if((X===(void 0))){
+X={};
 }
-var af=getGetOption(W,'breakiterator');
-var bl={};
-defineWEProperty(bl,'type',af(
+var ag=getGetOption(X,'breakiterator');
+var bm={};
+defineWEProperty(bm,'type',ag(
 'type','string',['character','word','sentence','line'],'word'));
-var ac=resolveLocale('breakiterator',V,W);
-var ak=%object_define_properties({},{
-requestedLocale:{value:ac.locale,writable:true},
-type:{value:bl.type,writable:true},
+var ad=resolveLocale('breakiterator',W,X);
+var al=%object_define_properties({},{
+requestedLocale:{value:ad.locale,writable:true},
+type:{value:bm.type,writable:true},
 locale:{writable:true}
 });
-var cg=%CreateBreakIterator(ac.locale,
-bl,
-ak);
-%MarkAsInitializedIntlObjectOfType(cf,'breakiterator',
-cg);
-cf[q]=ak;
-return cf;
+var ch=%CreateBreakIterator(ad.locale,
+bm,
+al);
+%MarkAsInitializedIntlObjectOfType(cg,'breakiterator',
+ch);
+cg[r]=al;
+if(e){
+%object_define_property(cg,'resolved',bk);
 }
-InstallConstructor(I,'v8BreakIterator',function(){
-var V=arguments[0];
-var W=arguments[1];
-if(!this||this===I){
-return new I.v8BreakIterator(V,W);
+return cg;
 }
-return initializeBreakIterator((%_ToObject(this)),V,W);
+InstallConstructor(J,'v8BreakIterator',function(){
+var W=arguments[0];
+var X=arguments[1];
+if(!this||this===J){
+return new J.v8BreakIterator(W,X);
+}
+return initializeBreakIterator((%_ToObject(this)),W,X);
 }
 );
-InstallFunction(I.v8BreakIterator.prototype,'resolvedOptions',
+InstallFunction(J.v8BreakIterator.prototype,'resolvedOptions',
 function(){
 if(!(new.target===(void 0))){
 throw %make_type_error(81);
@@ -12147,55 +12176,55 @@ throw %make_type_error(81);
 if(!%IsInitializedIntlObjectOfType(this,'breakiterator')){
 throw %make_type_error(126,"v8BreakIterator");
 }
-var ch=this;
-var ac=
-getOptimalLanguageTag(ch[q].requestedLocale,
-ch[q].locale);
+var ci=this;
+var ad=
+getOptimalLanguageTag(ci[r].requestedLocale,
+ci[r].locale);
 return{
-locale:ac,
-type:ch[q].type
+locale:ad,
+type:ci[r].type
 };
 }
 );
-InstallFunction(I.v8BreakIterator,'supportedLocalesOf',
-function(V){
+InstallFunction(J.v8BreakIterator,'supportedLocalesOf',
+function(W){
 if(!(new.target===(void 0))){
 throw %make_type_error(81);
 }
-return supportedLocalesOf('breakiterator',V,arguments[1]);
+return supportedLocalesOf('breakiterator',W,arguments[1]);
 }
 );
-function adoptText(cf,ci){
-%BreakIteratorAdoptText(%GetImplFromInitializedIntlObject(cf),
-(%_ToString(ci)));
+function adoptText(cg,cj){
+%BreakIteratorAdoptText(%GetImplFromInitializedIntlObject(cg),
+(%_ToString(cj)));
 }
-function first(cf){
-return %BreakIteratorFirst(%GetImplFromInitializedIntlObject(cf));
+function first(cg){
+return %BreakIteratorFirst(%GetImplFromInitializedIntlObject(cg));
 }
-function next(cf){
-return %BreakIteratorNext(%GetImplFromInitializedIntlObject(cf));
+function next(cg){
+return %BreakIteratorNext(%GetImplFromInitializedIntlObject(cg));
 }
-function current(cf){
-return %BreakIteratorCurrent(%GetImplFromInitializedIntlObject(cf));
+function current(cg){
+return %BreakIteratorCurrent(%GetImplFromInitializedIntlObject(cg));
 }
-function breakType(cf){
-return %BreakIteratorBreakType(%GetImplFromInitializedIntlObject(cf));
+function breakType(cg){
+return %BreakIteratorBreakType(%GetImplFromInitializedIntlObject(cg));
 }
-AddBoundMethod(I.v8BreakIterator,'adoptText',adoptText,1,
+AddBoundMethod(J.v8BreakIterator,'adoptText',adoptText,1,
 'breakiterator');
-AddBoundMethod(I.v8BreakIterator,'first',first,0,'breakiterator');
-AddBoundMethod(I.v8BreakIterator,'next',next,0,'breakiterator');
-AddBoundMethod(I.v8BreakIterator,'current',current,0,'breakiterator');
-AddBoundMethod(I.v8BreakIterator,'breakType',breakType,0,
+AddBoundMethod(J.v8BreakIterator,'first',first,0,'breakiterator');
+AddBoundMethod(J.v8BreakIterator,'next',next,0,'breakiterator');
+AddBoundMethod(J.v8BreakIterator,'current',current,0,'breakiterator');
+AddBoundMethod(J.v8BreakIterator,'breakType',breakType,0,
 'breakiterator');
-var cj={
-'collator':I.Collator,
-'numberformat':I.NumberFormat,
-'dateformatall':I.DateTimeFormat,
-'dateformatdate':I.DateTimeFormat,
-'dateformattime':I.DateTimeFormat
-};
 var ck={
+'collator':J.Collator,
+'numberformat':J.NumberFormat,
+'dateformatall':J.DateTimeFormat,
+'dateformatdate':J.DateTimeFormat,
+'dateformattime':J.DateTimeFormat
+};
+var cl={
 'collator':(void 0),
 'numberformat':(void 0),
 'dateformatall':(void 0),
@@ -12203,80 +12232,80 @@ var ck={
 'dateformattime':(void 0),
 };
 function clearDefaultObjects(){
-ck['dateformatall']=(void 0);
-ck['dateformatdate']=(void 0);
-ck['dateformattime']=(void 0);
+cl['dateformatall']=(void 0);
+cl['dateformatdate']=(void 0);
+cl['dateformattime']=(void 0);
 }
-var cl=0;
+var cm=0;
 function checkDateCacheCurrent(){
-var cm=%DateCacheVersion();
-if(cm==cl){
+var cn=%DateCacheVersion();
+if(cn==cm){
 return;
 }
-cl=cm;
+cm=cn;
 clearDefaultObjects();
 }
-function cachedOrNewService(U,V,W,bS){
-var cn=((bS===(void 0)))?W:bS;
-if((V===(void 0))&&(W===(void 0))){
+function cachedOrNewService(V,W,X,bT){
+var co=((bT===(void 0)))?X:bT;
+if((W===(void 0))&&(X===(void 0))){
 checkDateCacheCurrent();
-if((ck[U]===(void 0))){
-ck[U]=new cj[U](V,cn);
+if((cl[V]===(void 0))){
+cl[V]=new ck[V](W,co);
 }
-return ck[U];
+return cl[V];
 }
-return new cj[U](V,cn);
+return new ck[V](W,co);
 }
-function LocaleConvertCase(co,V,cp){
-var bg;
-if((V===(void 0))){
-bg=GetDefaultICULocaleJS();
-}else if((typeof(V)==='string')){
-bg=canonicalizeLanguageTag(V);
+function LocaleConvertCase(cp,W,cq){
+var bh;
+if((W===(void 0))){
+bh=GetDefaultICULocaleJS();
+}else if((typeof(W)==='string')){
+bh=canonicalizeLanguageTag(W);
 }else{
-var V=initializeLocaleList(V);
-bg=V.length>0?V[0]:GetDefaultICULocaleJS();
+var W=initializeLocaleList(W);
+bh=W.length>0?W[0]:GetDefaultICULocaleJS();
 }
-var ad=%_Call(s,bg,'-');
-if(ad!=-1){
-bg=%_Call(v,bg,0,ad);
+var ae=%_Call(t,bh,'-');
+if(ae!=-1){
+bh=%_Call(w,bh,0,ae);
 }
-var cq=['az','el','lt','tr'];
-var cr=%ArrayIndexOf(cq,bg,0);
-if(cr==-1){
-return cp?%StringToUpperCaseI18N(co):%StringToLowerCaseI18N(co);
+var cr=['az','el','lt','tr'];
+var cs=%ArrayIndexOf(cr,bh,0);
+if(cs==-1){
+return cq?%StringToUpperCaseI18N(cp):%StringToLowerCaseI18N(cp);
 }
-return %StringLocaleConvertCase(co,cp,
-cq[cr]);
+return %StringLocaleConvertCase(cp,cq,
+cr[cs]);
 }
-o(h.prototype,'localeCompare',function(cs){
+p(i.prototype,'localeCompare',function(ct){
 if(!(new.target===(void 0))){
 throw %make_type_error(81);
 }
 if((this==null)){
 throw %make_type_error(54);
 }
-var V=arguments[1];
-var W=arguments[2];
-var bk=cachedOrNewService('collator',V,W);
-return compare(bk,this,cs);
+var W=arguments[1];
+var X=arguments[2];
+var bl=cachedOrNewService('collator',W,X);
+return compare(bl,this,ct);
 }
 );
-o(h.prototype,'normalize',function(){
+p(i.prototype,'normalize',function(){
 if(!(new.target===(void 0))){
 throw %make_type_error(81);
 }
 if((%IS_VAR(this)===null)||(this===(void 0)))throw %make_type_error(17,"String.prototype.normalize");
-var co=(%_ToString(this));
-var ct=arguments[0];
-var cu=(ct===(void 0))?'NFC':(%_ToString(ct));
-var cv=['NFC','NFD','NFKC','NFKD'];
-var cw=%ArrayIndexOf(cv,cu,0);
-if(cw===-1){
+var cp=(%_ToString(this));
+var cu=arguments[0];
+var cv=(cu===(void 0))?'NFC':(%_ToString(cu));
+var cw=['NFC','NFD','NFKC','NFKD'];
+var cx=%ArrayIndexOf(cw,cv,0);
+if(cx===-1){
 throw %make_range_error(175,
-%_Call(c,cv,', '));
+%_Call(c,cw,', '));
 }
-return %StringNormalize(co,cw);
+return %StringNormalize(cp,cx);
 }
 );
 function ToLowerCaseI18N(){
@@ -12284,104 +12313,175 @@ if(!(new.target===(void 0))){
 throw %make_type_error(81);
 }
 if((%IS_VAR(this)===null)||(this===(void 0)))throw %make_type_error(17,"String.prototype.toLowerCase");
-var co=(%_ToString(this));
-return %StringToLowerCaseI18N(co);
+var cp=(%_ToString(this));
+return %StringToLowerCaseI18N(cp);
 }
 function ToUpperCaseI18N(){
 if(!(new.target===(void 0))){
 throw %make_type_error(81);
 }
 if((%IS_VAR(this)===null)||(this===(void 0)))throw %make_type_error(17,"String.prototype.toUpperCase");
-var co=(%_ToString(this));
-return %StringToUpperCaseI18N(co);
+var cp=(%_ToString(this));
+return %StringToUpperCaseI18N(cp);
 }
-function ToLocaleLowerCaseI18N(V){
+function ToLocaleLowerCaseI18N(W){
 if(!(new.target===(void 0))){
 throw %make_type_error(81);
 }
 if((%IS_VAR(this)===null)||(this===(void 0)))throw %make_type_error(17,"String.prototype.toLocaleLowerCase");
-return LocaleConvertCase((%_ToString(this)),V,false);
+return LocaleConvertCase((%_ToString(this)),W,false);
 }
 %FunctionSetLength(ToLocaleLowerCaseI18N,0);
-function ToLocaleUpperCaseI18N(V){
+function ToLocaleUpperCaseI18N(W){
 if(!(new.target===(void 0))){
 throw %make_type_error(81);
 }
 if((%IS_VAR(this)===null)||(this===(void 0)))throw %make_type_error(17,"String.prototype.toLocaleUpperCase");
-return LocaleConvertCase((%_ToString(this)),V,true);
+return LocaleConvertCase((%_ToString(this)),W,true);
 }
 %FunctionSetLength(ToLocaleUpperCaseI18N,0);
 %FunctionRemovePrototype(ToLowerCaseI18N);
 %FunctionRemovePrototype(ToUpperCaseI18N);
 %FunctionRemovePrototype(ToLocaleLowerCaseI18N);
 %FunctionRemovePrototype(ToLocaleUpperCaseI18N);
-b.Export(function(cx){
-cx.ToLowerCaseI18N=ToLowerCaseI18N;
-cx.ToUpperCaseI18N=ToUpperCaseI18N;
-cx.ToLocaleLowerCaseI18N=ToLocaleLowerCaseI18N;
-cx.ToLocaleUpperCaseI18N=ToLocaleUpperCaseI18N;
+b.Export(function(cy){
+cy.ToLowerCaseI18N=ToLowerCaseI18N;
+cy.ToUpperCaseI18N=ToUpperCaseI18N;
+cy.ToLocaleLowerCaseI18N=ToLocaleLowerCaseI18N;
+cy.ToLocaleUpperCaseI18N=ToLocaleUpperCaseI18N;
 });
-o(f.prototype,'toLocaleString',function(){
+p(g.prototype,'toLocaleString',function(){
 if(!(new.target===(void 0))){
 throw %make_type_error(81);
 }
-if(!(this instanceof f)&&typeof(this)!=='number'){
+if(!(this instanceof g)&&typeof(this)!=='number'){
 throw %make_type_error(55,"Number");
 }
-var V=arguments[0];
-var W=arguments[1];
-var bA=cachedOrNewService('numberformat',V,W);
-return formatNumber(bA,this);
+var W=arguments[0];
+var X=arguments[1];
+var bB=cachedOrNewService('numberformat',W,X);
+return formatNumber(bB,this);
 }
 );
-function toLocaleDateTime(cy,V,W,bR,bS,U){
-if(!(cy instanceof e)){
+function toLocaleDateTime(cz,W,X,bS,bT,V){
+if(!(cz instanceof f)){
 throw %make_type_error(55,"Date");
 }
-var ca=(%_ToNumber(cy));
-if((!%_IsSmi(%IS_VAR(ca))&&!(ca==ca)))return'Invalid Date';
-var bl=toDateTimeOptions(W,bR,bS);
-var bU=
-cachedOrNewService(U,V,W,bl);
-return formatDate(bU,cy);
+var cb=(%_ToNumber(cz));
+if((!%_IsSmi(%IS_VAR(cb))&&!(cb==cb)))return'Invalid Date';
+var bm=toDateTimeOptions(X,bS,bT);
+var bV=
+cachedOrNewService(V,W,X,bm);
+return formatDate(bV,cz);
 }
-o(e.prototype,'toLocaleString',function(){
+p(f.prototype,'toLocaleString',function(){
 if(!(new.target===(void 0))){
 throw %make_type_error(81);
 }
-var V=arguments[0];
-var W=arguments[1];
+var W=arguments[0];
+var X=arguments[1];
 return toLocaleDateTime(
-this,V,W,'any','all','dateformatall');
+this,W,X,'any','all','dateformatall');
 }
 );
-o(e.prototype,'toLocaleDateString',function(){
+p(f.prototype,'toLocaleDateString',function(){
 if(!(new.target===(void 0))){
 throw %make_type_error(81);
 }
-var V=arguments[0];
-var W=arguments[1];
+var W=arguments[0];
+var X=arguments[1];
 return toLocaleDateTime(
-this,V,W,'date','date','dateformatdate');
+this,W,X,'date','date','dateformatdate');
 }
 );
-o(e.prototype,'toLocaleTimeString',function(){
+p(f.prototype,'toLocaleTimeString',function(){
 if(!(new.target===(void 0))){
 throw %make_type_error(81);
 }
-var V=arguments[0];
-var W=arguments[1];
+var W=arguments[0];
+var X=arguments[1];
 return toLocaleDateTime(
-this,V,W,'time','time','dateformattime');
+this,W,X,'time','time','dateformattime');
 }
 );
 %FunctionRemovePrototype(FormatDateToParts);
-b.Export(function(cx){
-cx.FormatDateToParts=FormatDateToParts;
+b.Export(function(cy){
+cy.AddBoundMethod=AddBoundMethod;
+cy.FormatDateToParts=FormatDateToParts;
+cy.IntlParseDate=IntlParseDate;
+cy.IntlParseNumber=IntlParseNumber;
 });
 })
 
- <harmony-atomics…(
+ Lharmony-async-await‘
+(function(a,b,c){
+"use strict";
+%CheckIsBootstrapping();
+var d;
+var e;
+var f;
+var g;
+var h;
+var i;
+var j;
+var k;
+var l;
+b.Import(function(m){
+d=m.AsyncFunctionNext;
+e=m.AsyncFunctionThrow;
+g=m.IsPromise;
+f=m.GlobalPromise;
+h=m.NewPromiseCapability;
+j=m.PromiseCreate;
+i=m.PerformPromiseThen;
+k=m.RejectPromise;
+l=m.ResolvePromise;
+});
+var n=b.ImportNow("promise_await_handler_symbol");
+var o=
+b.ImportNow("promise_handled_hint_symbol");
+function PromiseCastResolved(p){
+if(g(p)){
+return p;
+}else{
+var q=j();
+l(q,p);
+return q;
+}
+}
+function AsyncFunctionAwait(r,s,t){
+var q=PromiseCastResolved(s);
+var u=
+(sentValue)=>%_Call(d,r,sentValue);
+var v=
+(sentError)=>%_Call(e,r,sentError);
+if(t&&(%_DebugIsActive()!=0)&&g(s)){
+(v[n]=true);
+}
+var w=h(f,false);
+return i(q,u,v,
+w);
+}
+function AsyncFunctionAwaitUncaught(r,s){
+return AsyncFunctionAwait(r,s,true);
+}
+function AsyncFunctionAwaitCaught(r,s){
+if((%_DebugIsActive()!=0)&&g(s)){
+(s[o]=true);
+}
+return AsyncFunctionAwait(r,s,false);
+}
+function RejectPromiseNoDebugEvent(q,x){
+return k(q,x,false);
+}
+%InstallToContext([
+"async_function_await_caught",AsyncFunctionAwaitCaught,
+"async_function_await_uncaught",AsyncFunctionAwaitUncaught,
+"reject_promise_no_debug_event",RejectPromiseNoDebugEvent,
+]);
+})
+
+<harmony-atomics…(
 (function(a,b){
 "use strict";
 %CheckIsBootstrapping();
@@ -14506,74 +14606,6 @@ b.InstallFunctions(c.prototype,2,[
 ]);
 });
 
-Lharmony-async-await‘
-(function(a,b,c){
-"use strict";
-%CheckIsBootstrapping();
-var d;
-var e;
-var f;
-var g;
-var h;
-var i;
-var j;
-var k;
-var l;
-b.Import(function(m){
-d=m.AsyncFunctionNext;
-e=m.AsyncFunctionThrow;
-g=m.IsPromise;
-f=m.GlobalPromise;
-h=m.NewPromiseCapability;
-j=m.PromiseCreate;
-i=m.PerformPromiseThen;
-k=m.RejectPromise;
-l=m.ResolvePromise;
-});
-var n=b.ImportNow("promise_await_handler_symbol");
-var o=
-b.ImportNow("promise_handled_hint_symbol");
-function PromiseCastResolved(p){
-if(g(p)){
-return p;
-}else{
-var q=j();
-l(q,p);
-return q;
-}
-}
-function AsyncFunctionAwait(r,s,t){
-var q=PromiseCastResolved(s);
-var u=
-(sentValue)=>%_Call(d,r,sentValue);
-var v=
-(sentError)=>%_Call(e,r,sentError);
-if(t&&(%_DebugIsActive()!=0)&&g(s)){
-(v[n]=true);
-}
-var w=h(f,false);
-return i(q,u,v,
-w);
-}
-function AsyncFunctionAwaitUncaught(r,s){
-return AsyncFunctionAwait(r,s,true);
-}
-function AsyncFunctionAwaitCaught(r,s){
-if((%_DebugIsActive()!=0)&&g(s)){
-(s[o]=true);
-}
-return AsyncFunctionAwait(r,s,false);
-}
-function RejectPromiseNoDebugEvent(q,x){
-return k(q,x,false);
-}
-%InstallToContext([
-"async_function_await_caught",AsyncFunctionAwaitCaught,
-"async_function_await_uncaught",AsyncFunctionAwaitUncaught,
-"reject_promise_no_debug_event",RejectPromiseNoDebugEvent,
-]);
-})
-
 `datetime-format-to-partsé
 (function(a,b){
 "use strict";
@@ -14601,6 +14633,20 @@ d(c.prototype,'toLocaleLowerCase',
 g,true);
 d(c.prototype,'toLocaleUpperCase',
 h,true);
+})
+
+(intl-extram
+(function(a,b){
+"use strict";
+%CheckIsBootstrapping();
+var c=a.Intl;
+var d=b.ImportNow("AddBoundMethod");
+var e=b.ImportNow("IntlParseDate");
+var f=b.ImportNow("IntlParseNumber");
+d(c.DateTimeFormat,'v8Parse',e,1,
+'dateformat');
+d(c.NumberFormat,'v8Parse',f,1,
+'numberformat');
 })
 
  (test-extra9

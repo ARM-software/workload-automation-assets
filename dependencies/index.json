@@ -15,6 +15,12 @@
             "sha256": "096e276435a84c6bcf19a4454fb1b6b3991b29a636a3f940854740302a9b9597"
         }
     ],
+    "appshare": [
+        {
+            "path": "uxperf_1600x1200.jpg",
+            "sha256": "7374d90da11d60dc4c64ea6ef3b60b1f75e6f50d0d1cc054b358e174bdd512c9"
+        }
+    ],
     "googleslides": [
         {
             "path": "uxperf_1600x1200.jpg",
@@ -28,43 +34,43 @@
     "octaned8": [
         {
             "path": "octaned8-assets.tar",
-            "sha256": "08c450766a18d6a8fdeb8fc3868d0189fbe9aaa40fb18ca095ad763377057bb7"
+            "sha256": "fa530b0b178ddc76e4006cebe864958d3eda18d65b4f20e938d85823ef48e4cf"
         },
         {
             "path": "bin/arm64/d8",
-            "sha256": "4d9e6b25d550297e1f781c54b9840a394b81a99ff8e7898768808b92eac6c774"
+            "sha256": "ba25aacda5011605de8c48c2f5d6aa3f044af323ad2a9d8a2cd6c9091861488f"
         },
         {
             "path": "bin/arm64/natives_blob.bin",
-            "sha256": "8d60d4ac6ec4ad0e164a08ad620db15250b3098ed87743d0418fa4dd94b7fe5d"
+            "sha256": "41a05175050d4eb18c2129fb431ded4faed27f6e61d95c855b83844c38095603"
         },
         {
             "path": "bin/arm64/snapshot_blob.bin",
-            "sha256": "336a1a8571d606b59d374a16c92c52fe615df0a1e9cc0bdd2f518c30ebe35f6a"
+            "sha256": "e980c75a10c34857a62fb1169bd21540dcd6d3bc32b6852e82a10d5e5e4f740e"
         },
         {
             "path": "bin/armeabi/d8",
-            "sha256": "4d9e6b25d550297e1f781c54b9840a394b81a99ff8e7898768808b92eac6c774"
+            "sha256": "273c6dfcdb03f04a6f485d8ffc4d6d0465247fe2828e67184dac0acc47fd1cf2"
         },
         {
             "path": "bin/armeabi/natives_blob.bin",
-            "sha256": "8d60d4ac6ec4ad0e164a08ad620db15250b3098ed87743d0418fa4dd94b7fe5d"
+            "sha256": "41a05175050d4eb18c2129fb431ded4faed27f6e61d95c855b83844c38095603"
         },
         {
             "path": "bin/armeabi/snapshot_blob.bin",
-            "sha256": "336a1a8571d606b59d374a16c92c52fe615df0a1e9cc0bdd2f518c30ebe35f6a"
+            "sha256": "ceab638eabebdebb3660e4c97b0ee651e00a4654633dea07326054f0c827a1d9"
         },
         {
             "path": "bin/x86/d8",
-            "sha256": "7fbafde4c33fc0bf8db60ad7f35828c359edef139eca24f1fb54781f2df7b395"
+            "sha256": "a32c0a95a50bb43b9498c285a2db1fd0290ae22e1939a87ed246a5476030e7d5"
         },
         {
             "path": "bin/x86/natives_blob.bin",
-            "sha256": "8d60d4ac6ec4ad0e164a08ad620db15250b3098ed87743d0418fa4dd94b7fe5d"
+            "sha256": "41a05175050d4eb18c2129fb431ded4faed27f6e61d95c855b83844c38095603"
         },
         {
             "path": "bin/x86/snapshot_blob.bin",
-            "sha256": "632d5ce509d9ad1973c4fb2733e5016d2cd355c0595f1937760f1a208eeb72b1"
+            "sha256": "386ed613f0012cf79007c74f391f746addad7f9dec0b1eb33c3124a4f5875ce2"
         }
     ],
     "googlephotos": [
@@ -85,10 +91,10 @@
             "sha256": "e4fd831708fdadd6612361313ef77f041f0743f330d21bdb8187e3e8323f589b"
         }
     ],
-    "adobereader": [
+    "gmail": [
         {
-            "path": "uxperf_test_doc.pdf",
-            "sha256": "db46234ad60beecbb5d87280af9bc38841bc9ad246a21eb617c7cdd5769ce216"
+            "path": "uxperf_1600x1200.jpg",
+            "sha256": "7374d90da11d60dc4c64ea6ef3b60b1f75e6f50d0d1cc054b358e174bdd512c9"
         }
     ],
     "powerpoint": [
@@ -101,16 +107,10 @@
             "sha256": "181856772cc79f225213f7543a8d6bcef426042cea356036d2e3540b4a3ee7e8"
         }
     ],
-    "gmail": [
+    "adobereader": [
         {
-            "path": "uxperf_1600x1200.jpg",
-            "sha256": "7374d90da11d60dc4c64ea6ef3b60b1f75e6f50d0d1cc054b358e174bdd512c9"
-        }
-    ],
-    "appshare": [
-        {
-            "path": "uxperf_1600x1200.jpg",
-            "sha256": "7374d90da11d60dc4c64ea6ef3b60b1f75e6f50d0d1cc054b358e174bdd512c9"
+            "path": "uxperf_test_doc.pdf",
+            "sha256": "db46234ad60beecbb5d87280af9bc38841bc9ad246a21eb617c7cdd5769ce216"
         }
     ]
 }
