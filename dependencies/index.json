@@ -38,39 +38,51 @@
         },
         {
             "path": "bin/arm64/d8",
-            "sha256": "ba25aacda5011605de8c48c2f5d6aa3f044af323ad2a9d8a2cd6c9091861488f"
+            "sha256": "44a7a776ad69d8f087149fd66112e5728605ec46a2805c0459efe2f009fef4a2"
         },
         {
             "path": "bin/arm64/natives_blob.bin",
-            "sha256": "41a05175050d4eb18c2129fb431ded4faed27f6e61d95c855b83844c38095603"
+            "sha256": "c1ab88b2b7fa583b62a52735856fc5d93575da3f5779fd5277e5b5b18b6bbda5"
         },
         {
             "path": "bin/arm64/snapshot_blob.bin",
-            "sha256": "e980c75a10c34857a62fb1169bd21540dcd6d3bc32b6852e82a10d5e5e4f740e"
+            "sha256": "822eb58d5a110921887e04d624118cfa8d1ae20761af3b5771bbd6aa6e798772"
         },
         {
             "path": "bin/armeabi/d8",
-            "sha256": "273c6dfcdb03f04a6f485d8ffc4d6d0465247fe2828e67184dac0acc47fd1cf2"
+            "sha256": "b7e480767fa83ae4879d3c9eeeebd2cf5a3ee728d5b2318542e38d287727cb0a"
         },
         {
             "path": "bin/armeabi/natives_blob.bin",
-            "sha256": "41a05175050d4eb18c2129fb431ded4faed27f6e61d95c855b83844c38095603"
+            "sha256": "c1ab88b2b7fa583b62a52735856fc5d93575da3f5779fd5277e5b5b18b6bbda5"
         },
         {
             "path": "bin/armeabi/snapshot_blob.bin",
-            "sha256": "ceab638eabebdebb3660e4c97b0ee651e00a4654633dea07326054f0c827a1d9"
+            "sha256": "039b54a07ba72749667e8d52dcc940badc708dcf9a70375464d4422ff87ed3f3"
+        },
+        {
+            "path": "bin/x64/d8",
+            "sha256": "845070e6d68a454c1ee045d9baaffe8187e6dc3f5391e50302c35521192ac5c1"
+        },
+        {
+            "path": "bin/x64/natives_blob.bin",
+            "sha256": "c1ab88b2b7fa583b62a52735856fc5d93575da3f5779fd5277e5b5b18b6bbda5"
+        },
+        {
+            "path": "bin/x64/snapshot_blob.bin",
+            "sha256": "d753d53e21df129f5de5c8e13c0ead629faeb88d3dab0f00f0c5636649c92d20"
         },
         {
             "path": "bin/x86/d8",
-            "sha256": "a32c0a95a50bb43b9498c285a2db1fd0290ae22e1939a87ed246a5476030e7d5"
+            "sha256": "a2f6ecedca7c3007c00f44f1d35982d9b3c3a3093c4d58af80c1e20088959484"
         },
         {
             "path": "bin/x86/natives_blob.bin",
-            "sha256": "41a05175050d4eb18c2129fb431ded4faed27f6e61d95c855b83844c38095603"
+            "sha256": "c1ab88b2b7fa583b62a52735856fc5d93575da3f5779fd5277e5b5b18b6bbda5"
         },
         {
             "path": "bin/x86/snapshot_blob.bin",
-            "sha256": "386ed613f0012cf79007c74f391f746addad7f9dec0b1eb33c3124a4f5875ce2"
+            "sha256": "022e51dca19807e69c363f587ad718c548e4b4cc371326a0a303cebfce515d2b"
         }
     ],
     "googlephotos": [
@@ -91,10 +103,10 @@
             "sha256": "e4fd831708fdadd6612361313ef77f041f0743f330d21bdb8187e3e8323f589b"
         }
     ],
-    "gmail": [
+    "adobereader": [
         {
-            "path": "uxperf_1600x1200.jpg",
-            "sha256": "7374d90da11d60dc4c64ea6ef3b60b1f75e6f50d0d1cc054b358e174bdd512c9"
+            "path": "uxperf_test_doc.pdf",
+            "sha256": "db46234ad60beecbb5d87280af9bc38841bc9ad246a21eb617c7cdd5769ce216"
         }
     ],
     "powerpoint": [
@@ -107,10 +119,10 @@
             "sha256": "181856772cc79f225213f7543a8d6bcef426042cea356036d2e3540b4a3ee7e8"
         }
     ],
-    "adobereader": [
+    "gmail": [
         {
-            "path": "uxperf_test_doc.pdf",
-            "sha256": "db46234ad60beecbb5d87280af9bc38841bc9ad246a21eb617c7cdd5769ce216"
+            "path": "uxperf_1600x1200.jpg",
+            "sha256": "7374d90da11d60dc4c64ea6ef3b60b1f75e6f50d0d1cc054b358e174bdd512c9"
         }
     ]
 }
