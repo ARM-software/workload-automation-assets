@@ -1,12 +1,16 @@
 {
-    "powerpoint": [
+    "chrome": [
         {
-            "path": "uxperf_test_doc.pptx",
-            "sha256": "181856772cc79f225213f7543a8d6bcef426042cea356036d2e3540b4a3ee7e8"
+            "path": "LICENSE",
+            "sha256": "6589749f4c6e66997a617999b3d1af46c0f65013fb508ba2e360cd6775c2fba7"
         },
         {
-            "path": "uxperf_1600x1200.jpg",
-            "sha256": "7374d90da11d60dc4c64ea6ef3b60b1f75e6f50d0d1cc054b358e174bdd512c9"
+            "path": "pages.tar",
+            "sha256": "eea26a6afc3cfaf02c1471879bb64a76097c8dd4da45397592098d612cff47cd"
+        },
+        {
+            "path": "OfflinePages.db",
+            "sha256": "35f260835cf9e78da6ab056813c07e7d17eb73c7622cdea9b510da6afc8bcb75"
         }
     ],
     "msword": [
@@ -47,76 +51,70 @@
             "sha256": "fa530b0b178ddc76e4006cebe864958d3eda18d65b4f20e938d85823ef48e4cf"
         },
         {
-            "path": "bin/armeabi/natives_blob.bin",
-            "sha256": "c1ab88b2b7fa583b62a52735856fc5d93575da3f5779fd5277e5b5b18b6bbda5"
-        },
-        {
-            "path": "bin/armeabi/snapshot_blob.bin",
-            "sha256": "039b54a07ba72749667e8d52dcc940badc708dcf9a70375464d4422ff87ed3f3"
-        },
-        {
-            "path": "bin/armeabi/d8",
-            "sha256": "b7e480767fa83ae4879d3c9eeeebd2cf5a3ee728d5b2318542e38d287727cb0a"
-        },
-        {
-            "path": "bin/x86/natives_blob.bin",
-            "sha256": "c1ab88b2b7fa583b62a52735856fc5d93575da3f5779fd5277e5b5b18b6bbda5"
-        },
-        {
-            "path": "bin/x86/snapshot_blob.bin",
-            "sha256": "022e51dca19807e69c363f587ad718c548e4b4cc371326a0a303cebfce515d2b"
-        },
-        {
-            "path": "bin/x86/d8",
-            "sha256": "a2f6ecedca7c3007c00f44f1d35982d9b3c3a3093c4d58af80c1e20088959484"
-        },
-        {
-            "path": "bin/x64/natives_blob.bin",
-            "sha256": "c1ab88b2b7fa583b62a52735856fc5d93575da3f5779fd5277e5b5b18b6bbda5"
-        },
-        {
-            "path": "bin/x64/snapshot_blob.bin",
-            "sha256": "d753d53e21df129f5de5c8e13c0ead629faeb88d3dab0f00f0c5636649c92d20"
-        },
-        {
-            "path": "bin/x64/d8",
-            "sha256": "845070e6d68a454c1ee045d9baaffe8187e6dc3f5391e50302c35521192ac5c1"
-        },
-        {
-            "path": "bin/arm64/natives_blob.bin",
-            "sha256": "c1ab88b2b7fa583b62a52735856fc5d93575da3f5779fd5277e5b5b18b6bbda5"
+            "path": "bin/arm64/d8",
+            "sha256": "44a7a776ad69d8f087149fd66112e5728605ec46a2805c0459efe2f009fef4a2"
         },
         {
             "path": "bin/arm64/snapshot_blob.bin",
             "sha256": "822eb58d5a110921887e04d624118cfa8d1ae20761af3b5771bbd6aa6e798772"
         },
         {
-            "path": "bin/arm64/d8",
-            "sha256": "44a7a776ad69d8f087149fd66112e5728605ec46a2805c0459efe2f009fef4a2"
+            "path": "bin/arm64/natives_blob.bin",
+            "sha256": "c1ab88b2b7fa583b62a52735856fc5d93575da3f5779fd5277e5b5b18b6bbda5"
+        },
+        {
+            "path": "bin/armeabi/d8",
+            "sha256": "b7e480767fa83ae4879d3c9eeeebd2cf5a3ee728d5b2318542e38d287727cb0a"
+        },
+        {
+            "path": "bin/armeabi/snapshot_blob.bin",
+            "sha256": "039b54a07ba72749667e8d52dcc940badc708dcf9a70375464d4422ff87ed3f3"
+        },
+        {
+            "path": "bin/armeabi/natives_blob.bin",
+            "sha256": "c1ab88b2b7fa583b62a52735856fc5d93575da3f5779fd5277e5b5b18b6bbda5"
+        },
+        {
+            "path": "bin/x86/d8",
+            "sha256": "a2f6ecedca7c3007c00f44f1d35982d9b3c3a3093c4d58af80c1e20088959484"
+        },
+        {
+            "path": "bin/x86/snapshot_blob.bin",
+            "sha256": "022e51dca19807e69c363f587ad718c548e4b4cc371326a0a303cebfce515d2b"
+        },
+        {
+            "path": "bin/x86/natives_blob.bin",
+            "sha256": "c1ab88b2b7fa583b62a52735856fc5d93575da3f5779fd5277e5b5b18b6bbda5"
+        },
+        {
+            "path": "bin/x64/d8",
+            "sha256": "845070e6d68a454c1ee045d9baaffe8187e6dc3f5391e50302c35521192ac5c1"
+        },
+        {
+            "path": "bin/x64/snapshot_blob.bin",
+            "sha256": "d753d53e21df129f5de5c8e13c0ead629faeb88d3dab0f00f0c5636649c92d20"
+        },
+        {
+            "path": "bin/x64/natives_blob.bin",
+            "sha256": "c1ab88b2b7fa583b62a52735856fc5d93575da3f5779fd5277e5b5b18b6bbda5"
         }
     ],
     "googlephotos": [
         {
-            "path": "uxperf_3264x2448.jpg",
-            "sha256": "fb6e9ab18b93673c132fa23bec1b944735b74fd6326ed78e6641f018c6704b30"
+            "path": "uxperf_2448x3264.png",
+            "sha256": "e4fd831708fdadd6612361313ef77f041f0743f330d21bdb8187e3e8323f589b"
         },
         {
             "path": "uxperf_1200x1600.png",
             "sha256": "5100461ee387960eaf1eac2ec6619ed18fe8278d2e4edee7aa4e5e96f8ab6e09"
         },
         {
-            "path": "uxperf_1600x1200.jpg",
-            "sha256": "7374d90da11d60dc4c64ea6ef3b60b1f75e6f50d0d1cc054b358e174bdd512c9"
+            "path": "uxperf_3264x2448.jpg",
+            "sha256": "fb6e9ab18b93673c132fa23bec1b944735b74fd6326ed78e6641f018c6704b30"
         },
         {
-            "path": "uxperf_2448x3264.png",
-            "sha256": "e4fd831708fdadd6612361313ef77f041f0743f330d21bdb8187e3e8323f589b"
-        }
-    ],
-    "adobereader": [
-        {
-            "path": "uxperf_test_doc.pdf",
-            "sha256": "db46234ad60beecbb5d87280af9bc38841bc9ad246a21eb617c7cdd5769ce216"
+            "path": "uxperf_1600x1200.jpg",
+            "sha256": "7374d90da11d60dc4c64ea6ef3b60b1f75e6f50d0d1cc054b358e174bdd512c9"
         }
     ],
     "deepbench": [
@@ -135,6 +133,22 @@
         {
             "path": "bin/arm64/conv_bench",
             "sha256": "efefa963ec47e6b222bfbc13bcbac8639937d3db11bd04db3664e8dd510aa6b8"
+        }
+    ],
+    "adobereader": [
+        {
+            "path": "uxperf_test_doc.pdf",
+            "sha256": "db46234ad60beecbb5d87280af9bc38841bc9ad246a21eb617c7cdd5769ce216"
+        }
+    ],
+    "powerpoint": [
+        {
+            "path": "uxperf_test_doc.pptx",
+            "sha256": "181856772cc79f225213f7543a8d6bcef426042cea356036d2e3540b4a3ee7e8"
+        },
+        {
+            "path": "uxperf_1600x1200.jpg",
+            "sha256": "7374d90da11d60dc4c64ea6ef3b60b1f75e6f50d0d1cc054b358e174bdd512c9"
         }
     ],
     "gmail": [
