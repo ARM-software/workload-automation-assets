@@ -1,5 +1,15 @@
-Assets for Workload Automation
-++++++++++++++++++++++++++++++
+[DEPRECATED] Assets for Workload Automation
+++++++++++++++++++++++++++++++++++++++++++++
+
+⚠️ **Development of this project has moved to a new repository.**
+
+Please visit the new location for the latest code, issues, and contributions:
+
+https://gitlab.arm.com/tooling/workload-automation/workload-automation-assets
+
+This repository is no longer actively maintained.
+
+-------------
 
 This repo provides external assets that are required to run some
 of the workloads in `Workload Automation <https://github.com/ARM-software/workload-automation>`_.
